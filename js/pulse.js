@@ -67,9 +67,16 @@
   function send(beacon) {
     if (!queue.length) return;
     var body = JSON.stringify({ sid: sid, src: src, ref: refHost, dev: dev, test: test ? 1 : 0, ev: queue.splice(0, 60) });
+    // A keepalive fetch survives the page leaving (e.g. jumping to Whop) and, unlike
+    // sendBeacon, isn't dropped by blockers that filter "ping" requests.
+    // sendBeacon is only the fallback for browsers without keepalive.
     var sent = false;
-    if (beacon && navigator.sendBeacon) { try { sent = navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'text/plain' })); } catch (e) {} }
-    if (!sent) { try { fetch(ENDPOINT, { method: 'POST', body: body, keepalive: true, mode: 'cors', headers: { 'Content-Type': 'text/plain' } }).catch(function () {}); } catch (e) {} }
+    try {
+      fetch(ENDPOINT, { method: 'POST', body: body, keepalive: true, mode: 'cors', credentials: 'omit', headers: { 'Content-Type': 'text/plain' } })
+        .catch(function () { if (beacon && navigator.sendBeacon) { try { navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'text/plain' })); } catch (e) {} } });
+      sent = true;
+    } catch (e) {}
+    if (!sent && navigator.sendBeacon) { try { navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'text/plain' })); } catch (e) {} }
     if (queue.length) send(beacon);
   }
   function track(type, name, val) {
