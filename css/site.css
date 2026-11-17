@@ -491,3 +491,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* "Let's learn hacking." is longer: let it wrap, balanced */
 .h1 em { white-space: normal; text-wrap: balance; }
 .h1 .h1-a { font-size: .46em; }
+
+/* links to /courses */
+.see-all { text-align: center; margin: 26px 0 0; font-size: 17px; }
+.incl a { color: inherit; }
+.incl-more { color: var(--yellow); font-weight: 800; margin-left: 4px; }
+.incl a:hover .incl-more { text-decoration: underline; }
+.nav a.on { color: var(--text); background: var(--panel); box-shadow: 0 0 0 1px var(--line) inset; }

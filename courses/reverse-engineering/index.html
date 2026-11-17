@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reverse Engineering | CyberFlow</title>
+<meta name="description" content="Reverse Engineering: 32 lessons (2h 44m), chapter by chapter. Assembly, PE files, the Windows API, debuggers and IDA Pro. Then 5 crackme challenges to prove it.">
+<meta name="theme-color" content="#0e0e10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reverse Engineering | CyberFlow Academy">
+<meta property="og:description" content="Reverse Engineering: 32 lessons (2h 44m), chapter by chapter. Assembly, PE files, the Windows API, debuggers and IDA Pro. Then 5 crackme challenges to prove it.">
+<meta property="og:image" content="https://cyberflow-academy.github.io/assets/covers/reverse-engineering.webp">
+<meta property="og:url" content="https://cyberflow-academy.github.io/courses/reverse-engineering/">
+<link rel="canonical" href="https://cyberflow-academy.github.io/courses/reverse-engineering/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/tab-icon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/tab-icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/courses.css?v=2">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="courses-page course-page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="arrow-back" viewBox="0 0 70 30"><path d="M66 18 C 50 10, 28 12, 6 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M16 6 L 5 15 L 15 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<a class="promo" data-t="promo_bar" href="https://whop.com/c/cyberflow/month29?promoCode=CYBER50" aria-label="Get 50% off your first payment with code CYBER50">
+  <span class="wrap promo-in">
+    <img src="../../assets/favicon.svg" alt="" width="22" height="22">
+    <span class="promo-t">Your first payment</span>
+    <span class="promo-sep" aria-hidden="true"></span>
+    <span class="promo-use">use<br>code</span>
+    <span class="code">CYBER50</span>
+    <span class="off">50% OFF</span>
+    <span class="promo-go"><svg class="arr-back" aria-hidden="true"><use href="#arrow-back"/></svg>grab it</span>
+  </span>
+</a>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../../" aria-label="CyberFlow Academy home"><img src="../../assets/logo-wordmark-sm.png" width="549" height="124" alt="CyberFlow"></a>
+    <nav class="nav" aria-label="Site">
+      <a href="../../#path">The path</a>
+      <a class="on" href="../">Courses</a>
+      <a href="../../#reviews">Reviews</a>
+      <a href="#join">Pricing</a>
+    </nav>
+    <a class="btn btn-sm btn-squad" data-t="join_squad" href="#join"><svg class="fp" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.4"><path d="M3 3.7H15.3A12.3 12.3 0 0 1 15.3 28.3H3"/><path d="M3 9.9H15.3A6.1 6.1 0 0 1 15.3 22.1H3"/><path d="M3 16H15.5"/></g></svg>Join the squad</a>
+  </div>
+</header>
+
+<main>
+  <section class="cp-hero">
+    <div class="wrap">
+      <a class="back" data-t="course_all_courses" href="../">← all courses</a>
+      <div class="cp-grid">
+        <div class="cp-text">
+          <p class="step-n">Step 5 · Specializations</p>
+          <h1 class="h1 cp-h1">Reverse <em>Engineering</em></h1>
+          <p class="cp-tag"></p>
+          <p class="lead cp-lead">Assembly, PE files, the Windows API, debuggers and IDA Pro. Then 5 crackme challenges to prove it.</p>
+          <p class="course-meta cp-meta"><span>📚 7 chapters</span><span>🎬 32 lessons</span><span>⏱️ 2h 44m</span></p>
+          <div class="cp-cta">
+            <a class="btn" data-t="course_get_it" href="#join">🚀 Get it with CYBER50</a>
+            <a class="btn btn-ghost" data-t="course_see_lessons" href="#lessons">See the lessons ↓</a>
+          </div>
+        </div>
+        <figure class="cp-cover"><img src="../../assets/covers/reverse-engineering.webp" width="1280" height="720" alt="Reverse Engineering course cover"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap cp-lessons" id="lessons" aria-labelledby="lessons-h">
+    <div class="cp-lessons-head">
+      <h2 id="lessons-h">What's inside <small>7 chapters · 32 lessons</small></h2>
+      <button type="button" class="chap-all">Open every chapter</button>
+    </div>
+    <ol class="chapters"><li class="chap" id="ch-1"><details open><summary><span class="cn">01</span><span class="ct">The Basics</span><span class="cc">4 lessons · 6m</span></summary><ol class="lessons"><li><span class="lt">Welcome</span><span class="lk lk-vid">▶ 1m</span></li><li><span class="lt">Why Learn To Reverse Engineer?</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">The Reverse Engineering Process</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">The Ultimate Reverse Engineering CheatSheet</span><span class="lk lk-pdf">📄 PDF</span></li></ol></details></li><li class="chap" id="ch-2"><details><summary><span class="cn">02</span><span class="ct">Assembly</span><span class="cc">5 lessons · 22m</span></summary><ol class="lessons"><li><span class="lt">CPU Architectures, Registers and More</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">The Assembler &amp; Segments</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Instruction Set Architecture</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">The Essential Instructions (You&#x27;ll Use often)</span><span class="lk lk-vid">▶ 7m</span></li><li><span class="lt">Bitwise Operations &amp; Endianness</span><span class="lk lk-vid">▶ 4m</span></li></ol></details></li><li class="chap" id="ch-3"><details><summary><span class="cn">03</span><span class="ct">Native Code</span><span class="cc">3 lessons · 22m</span></summary><ol class="lessons"><li><span class="lt">Portable Executable File Format (PE)</span><span class="lk lk-vid">▶ 9m</span></li><li><span class="lt">Windows API</span><span class="lk lk-vid">▶ 7m</span></li><li><span class="lt">Parsing PE Files</span><span class="lk lk-vid">▶ 6m</span></li></ol></details></li><li class="chap" id="ch-4"><details><summary><span class="cn">04</span><span class="ct">Debuggers</span><span class="cc">5 lessons · 24m</span></summary><ol class="lessons"><li><span class="lt">Debugger Functionality</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">Debugger Commands</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">WinDbg</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Using a Debugger</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">Using a Debugger (Continued)</span><span class="lk lk-vid">▶ 6m</span></li></ol></details></li><li class="chap" id="ch-5"><details><summary><span class="cn">05</span><span class="ct">Let&#x27;s Get Practical with Assembly</span><span class="cc">5 lessons · 26m</span></summary><ol class="lessons"><li><span class="lt">Functions &amp; Stack Frames</span><span class="lk lk-vid">▶ 8m</span></li><li><span class="lt">Calling Conventions</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">The Call Stack &amp; Stack Frames</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">Conditionals &amp; Control Structures</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Tracing Branching Logic</span><span class="lk lk-vid">▶ 5m</span></li></ol></details></li><li class="chap" id="ch-6"><details><summary><span class="cn">06</span><span class="ct">IDA Pro</span><span class="cc">5 lessons · 25m</span></summary><ol class="lessons"><li><span class="lt">IDA Pro</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">Loading a Binary in IDA Pro</span><span class="lk lk-vid">▶ 5m</span></li><li><span class="lt">Strings &amp; APIs</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">Leveraging Strings &amp; APIs</span><span class="lk lk-vid">▶ 7m</span></li><li><span class="lt">Strategies For Tracing Program Behavior</span><span class="lk lk-vid">▶ 4m</span></li></ol></details></li><li class="chap" id="ch-7"><details><summary><span class="cn">07</span><span class="ct">Crackme Challenges</span><span class="cc">5 lessons · 22m</span></summary><ol class="lessons"><li><span class="lt">Crackme Challenge #1</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Crackme Challenge #2</span><span class="lk lk-vid">▶ 5m</span></li><li><span class="lt">Crackme Challenge #3</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">Crackme Challenge #4</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Crackme Challenge #5</span><span class="lk lk-vid">▶ 3m</span></li></ol></details></li></ol>
+    <p class="pulled">Lesson list taken straight from the academy on Nov 17, 2026. One membership gets you this course and all 14 others.</p>
+  </section>
+
+  <section class="wrap cp-more" aria-labelledby="more-h">
+    <h2 id="more-h">Right before and after this one in the path</h2>
+    <div class="cc-grid cc-grid-2"><a class="cc-card" href="../hacking-labs-practice/"><span class="cc-img"><img src="../../assets/covers/hacking-labs-practice.webp" width="1280" height="720" alt="" loading="lazy"></span><span class="cc-body"><span class="cc-title">Hacking Labs: Practice </span><span class="cc-sum">Guided labs in three tiers, from IDOR and SQL injection up to JWT, CORS and SSRF.</span><span class="cc-meta"><span>📚 3 chapters</span><span>🎬 6 lessons</span><span>⏱️ 30m</span></span><span class="cc-go">See all 6 lessons <span aria-hidden="true">→</span></span></span></a><a class="cc-card" href="../osint/"><span class="cc-img"><img src="../../assets/covers/osint.webp" width="1280" height="720" alt="" loading="lazy"></span><span class="cc-body"><span class="cc-title">OSINT </span><span class="cc-sum">Sock puppets, search operators, finding people, phone numbers and emails, info hidden in images, maps and social media.</span><span class="cc-meta"><span>📚 7 chapters</span><span>🎬 31 lessons</span><span>⏱️ 1h 52m</span></span><span class="cc-go">See all 31 lessons <span aria-hidden="true">→</span></span></span></a></div>
+    <p class="cp-all"><a class="link" data-t="course_all_courses" href="../">See all 14 courses →</a></p>
+  </section>
+
+  <section class="c-join" id="join">
+    <div class="wrap">
+      <h2 class="h2">This course, plus <em>everything else.</em></h2>
+      <p class="sub">One membership, all 14 courses, 484 lessons, the labs and the Discord. CYBER50 is already on the buttons.</p>
+      <div class="c-plans">
+        <a class="btn btn-ghost" data-t="plan_monthly" href="https://whop.com/c/cyberflow/month29?promoCode=CYBER50">Monthly · start for $14.50 <span aria-hidden="true">→</span></a>
+        <a class="btn" data-t="plan_yearly" href="https://whop.com/c/cyberflow/website-year?promoCode=CYBER50">Yearly · $112.50 for the whole year <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="fine">Then $29 a month or $225 a year. Whop adds a 5% service fee. Cancel any time.</p>
+      <a class="back" data-t="course_back_home" href="../../">← back to the main page</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <img src="../../assets/logo-wordmark-sm.png" width="549" height="124" alt="CyberFlow" class="foot-logo">
+    <nav class="foot-links" aria-label="Elsewhere">
+      <a data-t="foot_youtube" href="https://www.youtube.com/@cyberflow10" rel="noopener">YouTube</a>
+      <a data-t="foot_x" href="https://x.com/CyberFlow10" rel="noopener">X</a>
+      <a data-t="foot_whop" href="https://whop.com/cyberflow/" rel="noopener">Whop</a>
+      <span class="sel">cyberflow10@gmail.com</span>
+    </nav>
+    <p class="foot-copy">© 2026 CyberFlow. For learning and authorized testing only.</p>
+  </div>
+</footer>
+
+<script src="../../js/courses.js?v=2" defer></script>
+<script src="../../js/pulse.js?v=2" data-endpoint="https://cyberflow-pulse.cyberflow-academy.workers.dev/e" defer></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bug Bounty | CyberFlow</title>
+<meta name="description" content="Bug Bounty: 45 lessons (3h 44m), chapter by chapter. Information disclosure, broken access control and IDOR, path traversal, OAuth 2.0, command injection and a lot of XSS. Ends with a 1 hour live bug hunt.">
+<meta name="theme-color" content="#0e0e10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bug Bounty | CyberFlow Academy">
+<meta property="og:description" content="Bug Bounty: 45 lessons (3h 44m), chapter by chapter. Information disclosure, broken access control and IDOR, path traversal, OAuth 2.0, command injection and a lot of XSS. Ends with a 1 hour live bug hunt.">
+<meta property="og:image" content="https://cyberflow-academy.github.io/assets/covers/bug-bounty.webp">
+<meta property="og:url" content="https://cyberflow-academy.github.io/courses/bug-bounty/">
+<link rel="canonical" href="https://cyberflow-academy.github.io/courses/bug-bounty/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/tab-icon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/tab-icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/courses.css?v=2">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="courses-page course-page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="arrow-back" viewBox="0 0 70 30"><path d="M66 18 C 50 10, 28 12, 6 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M16 6 L 5 15 L 15 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<a class="promo" data-t="promo_bar" href="https://whop.com/c/cyberflow/month29?promoCode=CYBER50" aria-label="Get 50% off your first payment with code CYBER50">
+  <span class="wrap promo-in">
+    <img src="../../assets/favicon.svg" alt="" width="22" height="22">
+    <span class="promo-t">Your first payment</span>
+    <span class="promo-sep" aria-hidden="true"></span>
+    <span class="promo-use">use<br>code</span>
+    <span class="code">CYBER50</span>
+    <span class="off">50% OFF</span>
+    <span class="promo-go"><svg class="arr-back" aria-hidden="true"><use href="#arrow-back"/></svg>grab it</span>
+  </span>
+</a>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="../../" aria-label="CyberFlow Academy home"><img src="../../assets/logo-wordmark-sm.png" width="549" height="124" alt="CyberFlow"></a>
+    <nav class="nav" aria-label="Site">
+      <a href="../../#path">The path</a>
+      <a class="on" href="../">Courses</a>
+      <a href="../../#reviews">Reviews</a>
+      <a href="#join">Pricing</a>
+    </nav>
+    <a class="btn btn-sm btn-squad" data-t="join_squad" href="#join"><svg class="fp" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3.4"><path d="M3 3.7H15.3A12.3 12.3 0 0 1 15.3 28.3H3"/><path d="M3 9.9H15.3A6.1 6.1 0 0 1 15.3 22.1H3"/><path d="M3 16H15.5"/></g></svg>Join the squad</a>
+  </div>
+</header>
+
+<main>
+  <section class="cp-hero">
+    <div class="wrap">
+      <a class="back" data-t="course_all_courses" href="../">← all courses</a>
+      <div class="cp-grid">
+        <div class="cp-text">
+          <p class="step-n">Step 4 · Web hacking and bug bounty</p>
+          <h1 class="h1 cp-h1">Bug <em>Bounty</em></h1>
+          <p class="cp-tag"></p>
+          <p class="lead cp-lead">Information disclosure, broken access control and IDOR, path traversal, OAuth 2.0, command injection and a lot of XSS. Ends with a 1 hour live bug hunt.</p>
+          <p class="course-meta cp-meta"><span>📚 10 chapters</span><span>🎬 45 lessons</span><span>⏱️ 3h 44m</span></p>
+          <div class="cp-cta">
+            <a class="btn" data-t="course_get_it" href="#join">🚀 Get it with CYBER50</a>
+            <a class="btn btn-ghost" data-t="course_see_lessons" href="#lessons">See the lessons ↓</a>
+          </div>
+        </div>
+        <figure class="cp-cover"><img src="../../assets/covers/bug-bounty.webp" width="1280" height="720" alt="Bug Bounty course cover"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap cp-lessons" id="lessons" aria-labelledby="lessons-h">
+    <div class="cp-lessons-head">
+      <h2 id="lessons-h">What's inside <small>10 chapters · 45 lessons</small></h2>
+      <button type="button" class="chap-all">Open every chapter</button>
+    </div>
+    <ol class="chapters"><li class="chap" id="ch-1"><details open><summary><span class="cn">01</span><span class="ct">Introduction</span><span class="cc">3 lessons · 4m</span></summary><ol class="lessons"><li><span class="lt">Bug Bounty Course Introduction</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">What is Bug Hunting</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">The Ultimate Bug Bounty Hunting Guide 2025</span><span class="lk lk-pdf">📄 PDF</span></li></ol></details></li><li class="chap" id="ch-2"><details><summary><span class="cn">02</span><span class="ct">Information Disclosure Vulnerabilities</span><span class="cc">8 lessons · 22m</span></summary><ol class="lessons"><li><span class="lt">What are Information Disclosure Vulnerabilities?</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Your First Bug Bounty :)</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">Automate Discovering Hidden Paths</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">FeroxBuster in Windows</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Bug Bounty Mindset (Thinking Like a Bug Bounty Hunter)</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">GET Methods</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">POST Methods</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">BurpSuiiiiite</span><span class="lk lk-vid">▶ 3m</span></li></ol></details></li><li class="chap" id="ch-3"><details><summary><span class="cn">03</span><span class="ct">Broken Access Control Vulnerabilities</span><span class="cc">5 lessons · 13m</span></summary><ol class="lessons"><li><span class="lt">What Are Broken Access Control Vulnerabilities?</span><span class="lk lk-vid">▶ 1m</span></li><li><span class="lt">Manipulating That Cookie</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Accessing Private User Data</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">IDOR Vulnerabilities (Insecure Direct Object Reference)</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Get Admin Access with Burp Repeater</span><span class="lk lk-vid">▶ 5m</span></li></ol></details></li><li class="chap" id="ch-4"><details><summary><span class="cn">04</span><span class="ct">Path Directory Traversal</span><span class="cc">8 lessons · 20m</span></summary><ol class="lessons"><li><span class="lt">What Are Path Traversal Vulnerabilities?</span><span class="lk lk-vid">▶ 7m</span></li><li><span class="lt">Bypassing Absolute Path Restriction</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">The NullByte %00</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Directory Traversal Cheatsheet</span><span class="lk lk-pdf">📄 PDF</span></li><li><span class="lt">Bypassing Filtering (..//..//..//)</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Bypassing Hard Coded Paths</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Some Advanced Bypassing Techniques (%2F)</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">Enjoy This Cheatsheet</span><span class="lk lk-vid">▶ video</span></li></ol></details></li><li class="chap" id="ch-5"><details><summary><span class="cn">05</span><span class="ct">Oauth 2.0</span><span class="cc">4 lessons · 19m</span></summary><ol class="lessons"><li><span class="lt">What is OAUTH 2.0?</span><span class="lk lk-vid">▶ 2m</span></li><li><span class="lt">OAUTH 2.0 Exploitation Basics</span><span class="lk lk-vid">▶ 8m</span></li><li><span class="lt">Linking OAUTH 2.0 Flow Through CSRF</span><span class="lk lk-vid">▶ 9m</span></li><li><span class="lt">Understanding OAuth 2.0 Guide</span><span class="lk lk-pdf">📄 PDF</span></li></ol></details></li><li class="chap" id="ch-6"><details><summary><span class="cn">06</span><span class="ct">OS Command Injection</span><span class="cc">3 lessons · 12m</span></summary><ol class="lessons"><li><span class="lt">Command Injection CheatSheet</span><span class="lk lk-pdf">📄 PDF</span></li><li><span class="lt">What are Command Injection Vulnerabilities?</span><span class="lk lk-vid">▶ 6m</span></li><li><span class="lt">OS Blind Command Injections</span><span class="lk lk-vid">▶ 6m</span></li></ol></details></li><li class="chap" id="ch-7"><details><summary><span class="cn">07</span><span class="ct">XSS (Cross Site Scripting)</span><span class="cc">3 lessons · 11m</span></summary><ol class="lessons"><li><span class="lt">What is Cross Site Scripting: XSS?</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">HTML Injection Vulnerabilities</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Reflected &amp; Stored XSS Vulnerabilities</span><span class="lk lk-vid">▶ 4m</span></li></ol></details></li><li class="chap" id="ch-8"><details><summary><span class="cn">08</span><span class="ct">Dom Xss</span><span class="cc">5 lessons · 17m</span></summary><ol class="lessons"><li><span class="lt">Reflected DOM XSS in a Link</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Reflected XSS in an Image Tag</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">Injecting Javascript Directly in a Page Script</span><span class="lk lk-vid">▶ 5m</span></li><li><span class="lt">XSS in a Drop-down Menu</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">XSS in AngularJS Application</span><span class="lk lk-vid">▶ 2m</span></li></ol></details></li><li class="chap" id="ch-9"><details><summary><span class="cn">09</span><span class="ct">Advanced XSS</span><span class="cc">5 lessons · 20m</span></summary><ol class="lessons"><li><span class="lt">Javascript Backticks (Javascript XSS)</span><span class="lk lk-vid">▶ 4m</span></li><li><span class="lt">Single-Quotes Filtering</span><span class="lk lk-vid">▶ 3m</span></li><li><span class="lt">ADVANCEEEED Filtering</span><span class="lk lk-vid">▶ 8m</span></li><li><span class="lt">Server-Side Filtering</span><span class="lk lk-vid">▶ 5m</span></li><li><span class="lt">XSS CheatSheet</span><span class="lk lk-vid">▶ video</span></li></ol></details></li><li class="chap" id="ch-10"><details><summary><span class="cn">10</span><span class="ct">1 Hour Live Bug Hunting (Everything We&#x27;ve Learned!)</span><span class="cc">1 lesson · 1h 08m</span></summary><ol class="lessons"><li><span class="lt">Hour Live Bug Hunting (Everything We&#x27;ve Learned!)</span><span class="lk lk-vid">▶ 1h 08m</span></li></ol></details></li></ol>
+    <p class="pulled">Lesson list taken straight from the academy on Nov 17, 2026. One membership gets you this course and all 14 others.</p>
+  </section>
+
+  <section class="wrap cp-more" aria-labelledby="more-h">
+    <h2 id="more-h">Right before and after this one in the path</h2>
+    <div class="cc-grid cc-grid-2"><a class="cc-card" href="../website-hacking/"><span class="cc-img"><img src="../../assets/covers/website-hacking.webp" width="1280" height="720" alt="" loading="lazy"></span><span class="cc-body"><span class="cc-title">Website Hacking </span><span class="cc-sum">Attack websites on your own lab: info gathering, file upload bugs, code execution, LFI and RFI, SQL injection, XSS and brute force. Plus how to fix each one.</span><span class="cc-meta"><span>📚 13 chapters</span><span>🎬 46 lessons</span><span>⏱️ 1h 46m</span></span><span class="cc-go">See all 46 lessons <span aria-hidden="true">→</span></span></span></a><a class="cc-card" href="../hacking-labs-practice/"><span class="cc-img"><img src="../../assets/covers/hacking-labs-practice.webp" width="1280" height="720" alt="" loading="lazy"></span><span class="cc-body"><span class="cc-title">Hacking Labs: Practice </span><span class="cc-sum">Guided labs in three tiers, from IDOR and SQL injection up to JWT, CORS and SSRF.</span><span class="cc-meta"><span>📚 3 chapters</span><span>🎬 6 lessons</span><span>⏱️ 30m</span></span><span class="cc-go">See all 6 lessons <span aria-hidden="true">→</span></span></span></a></div>
+    <p class="cp-all"><a class="link" data-t="course_all_courses" href="../">See all 14 courses →</a></p>
+  </section>
+
+  <section class="c-join" id="join">
+    <div class="wrap">
+      <h2 class="h2">This course, plus <em>everything else.</em></h2>
+      <p class="sub">One membership, all 14 courses, 484 lessons, the labs and the Discord. CYBER50 is already on the buttons.</p>
+      <div class="c-plans">
+        <a class="btn btn-ghost" data-t="plan_monthly" href="https://whop.com/c/cyberflow/month29?promoCode=CYBER50">Monthly · start for $14.50 <span aria-hidden="true">→</span></a>
+        <a class="btn" data-t="plan_yearly" href="https://whop.com/c/cyberflow/website-year?promoCode=CYBER50">Yearly · $112.50 for the whole year <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="fine">Then $29 a month or $225 a year. Whop adds a 5% service fee. Cancel any time.</p>
+      <a class="back" data-t="course_back_home" href="../../">← back to the main page</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <img src="../../assets/logo-wordmark-sm.png" width="549" height="124" alt="CyberFlow" class="foot-logo">
+    <nav class="foot-links" aria-label="Elsewhere">
+      <a data-t="foot_youtube" href="https://www.youtube.com/@cyberflow10" rel="noopener">YouTube</a>
+      <a data-t="foot_x" href="https://x.com/CyberFlow10" rel="noopener">X</a>
+      <a data-t="foot_whop" href="https://whop.com/cyberflow/" rel="noopener">Whop</a>
+      <span class="sel">cyberflow10@gmail.com</span>
+    </nav>
+    <p class="foot-copy">© 2026 CyberFlow. For learning and authorized testing only.</p>
+  </div>
+</footer>
+
+<script src="../../js/courses.js?v=2" defer></script>
+<script src="../../js/pulse.js?v=2" data-endpoint="https://cyberflow-pulse.cyberflow-academy.workers.dev/e" defer></script>
+</body>
+</html>
