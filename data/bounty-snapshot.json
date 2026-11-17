@@ -1,0 +1,449 @@
+{
+"total": 961,
+"paying": 425,
+"beginner": [
+{
+"n": "Google & Alphabet VRP",
+"pl": "direct",
+"max": 151500,
+"lvl": "beginner",
+"sc": 30,
+"assets": 5,
+"cats": [
+"wildcard",
+"mobile",
+"web"
+],
+"hunt": [
+"Subdomain Takeover",
+"Forgotten Assets",
+"Exposed Panels"
+],
+"why": [
+"Wildcard scope \u2192 broad recon surface, easy entry point (+easy)",
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": false
+},
+{
+"n": "T-Mobile",
+"pl": "bugcrowd",
+"max": 133700,
+"lvl": "beginner",
+"sc": 32,
+"assets": 76,
+"cats": [
+"web",
+"other",
+"network"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"50+ web assets \u2192 huge attack surface (+easy)",
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": false
+},
+{
+"n": "Auth0 by Okta",
+"pl": "bugcrowd",
+"max": 50000,
+"lvl": "beginner",
+"sc": 32,
+"assets": 26,
+"cats": [
+"web",
+"other",
+"mobile"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"10+ web assets \u2192 plenty of surface to explore (+easy)",
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": false
+},
+{
+"n": "Chime Managed Bug Bounty Engagement",
+"pl": "bugcrowd",
+"max": 20000,
+"lvl": "beginner",
+"sc": 32,
+"assets": 19,
+"cats": [
+"web",
+"mobile"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"10+ web assets \u2192 plenty of surface to explore (+easy)",
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": false
+},
+{
+"n": "SAP Invitational Bug Bounty Program",
+"pl": "bugcrowd",
+"max": 20000,
+"lvl": "beginner",
+"sc": 32,
+"assets": 25,
+"cats": [
+"web"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"10+ web assets \u2192 plenty of surface to explore (+easy)",
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": false
+},
+{
+"n": "Capital.com",
+"pl": "intigriti",
+"max": 16200,
+"lvl": "beginner",
+"sc": 32,
+"assets": 12,
+"cats": [
+"web",
+"wildcard",
+"mobile"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"Wildcard scope \u2192 broad recon surface, easy entry point (+easy)",
+"$10k+ max bounty \u2192 moderate competition (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Monzo Public Bug Bounty Program",
+"pl": "intigriti",
+"max": 15875,
+"lvl": "beginner",
+"sc": 32,
+"assets": 6,
+"cats": [
+"wildcard",
+"mobile",
+"web"
+],
+"hunt": [
+"Subdomain Takeover",
+"Forgotten Assets",
+"Exposed Panels"
+],
+"why": [
+"Wildcard scope \u2192 broad recon surface, easy entry point (+easy)",
+"$10k+ max bounty \u2192 moderate competition (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Yahoo Bug Bounty",
+"pl": "intigriti",
+"max": 15000,
+"lvl": "beginner",
+"sc": 32,
+"assets": 36,
+"cats": [
+"other",
+"web",
+"wildcard"
+],
+"hunt": [
+"General Web Checks",
+"Config Review",
+"XSS"
+],
+"why": [
+"Wildcard scope \u2192 broad recon surface, easy entry point (+easy)",
+"$10k+ max bounty \u2192 moderate competition (+hard)"
+],
+"isNew": false
+}
+],
+"top": [
+{
+"n": "OpenSea Managed Bug Bounty Program",
+"pl": "bugcrowd",
+"max": 3000000,
+"lvl": "intermediate",
+"sc": 44,
+"assets": 11,
+"cats": [
+"other",
+"web",
+"mobile"
+],
+"hunt": [
+"General Web Checks",
+"Config Review",
+"XSS"
+],
+"why": [
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Immunefi (Web3 Bug Bounty Hub)",
+"pl": "direct",
+"max": 3000000,
+"lvl": "advanced",
+"sc": 79,
+"assets": 2,
+"cats": [
+"web3"
+],
+"hunt": [
+"Reentrancy",
+"Access Control",
+"Oracle Manipulation"
+],
+"why": [
+"Web3-heavy scope \u2192 requires Solidity/EVM expertise (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Ethena (Web3)",
+"pl": "direct",
+"max": 3000000,
+"lvl": "advanced",
+"sc": 79,
+"assets": 1,
+"cats": [
+"web3"
+],
+"hunt": [
+"Reentrancy",
+"Access Control",
+"Oracle Manipulation"
+],
+"why": [
+"Web3-heavy scope \u2192 requires Solidity/EVM expertise (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Apple Security Bounty",
+"pl": "direct",
+"max": 2000000,
+"lvl": "intermediate",
+"sc": 44,
+"assets": 5,
+"cats": [
+"mobile",
+"desktop",
+"hardware"
+],
+"hunt": [
+"Insecure Storage",
+"Weak TLS Validation",
+"Hardcoded Secrets"
+],
+"why": [
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Lombard Finance (Web3)",
+"pl": "direct",
+"max": 500000,
+"lvl": "advanced",
+"sc": 79,
+"assets": 1,
+"cats": [
+"web3"
+],
+"hunt": [
+"Reentrancy",
+"Access Control",
+"Oracle Manipulation"
+],
+"why": [
+"Web3-heavy scope \u2192 requires Solidity/EVM expertise (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "Microsoft MSRC Bounty Programs",
+"pl": "direct",
+"max": 250000,
+"lvl": "intermediate",
+"sc": 66,
+"assets": 4,
+"cats": [
+"desktop",
+"web",
+"api"
+],
+"hunt": [
+"Memory Corruption",
+"Insecure Deserialization",
+"DLL Hijacking"
+],
+"why": [
+"Hardware/IoT targets \u2192 needs physical & firmware skills (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "SSV Network (Web3)",
+"pl": "direct",
+"max": 250000,
+"lvl": "advanced",
+"sc": 79,
+"assets": 1,
+"cats": [
+"web3"
+],
+"hunt": [
+"Reentrancy",
+"Access Control",
+"Oracle Manipulation"
+],
+"why": [
+"Web3-heavy scope \u2192 requires Solidity/EVM expertise (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+},
+{
+"n": "ENS - Ethereum Name Service (Web3)",
+"pl": "direct",
+"max": 250000,
+"lvl": "advanced",
+"sc": 79,
+"assets": 1,
+"cats": [
+"web3"
+],
+"hunt": [
+"Reentrancy",
+"Access Control",
+"Oracle Manipulation"
+],
+"why": [
+"Web3-heavy scope \u2192 requires Solidity/EVM expertise (+hard)",
+"$100k+ max bounty \u2192 professional researchers compete here (+hard)"
+],
+"isNew": false
+}
+],
+"fresh": [
+{
+"n": "Freshworks ",
+"pl": "hackerone",
+"max": null,
+"lvl": "intermediate",
+"sc": 40,
+"assets": 16,
+"cats": [
+"mobile",
+"web"
+],
+"hunt": [
+"Insecure Storage",
+"Weak TLS Validation",
+"Hardcoded Secrets"
+],
+"why": [],
+"isNew": true
+},
+{
+"n": "Bytera Marketplace Managed Bug Bounty Engagement",
+"pl": "bugcrowd",
+"max": 1500,
+"lvl": "intermediate",
+"sc": 36,
+"assets": 4,
+"cats": [
+"web"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"Full safe harbor \u2192 strong legal protection for researchers (+easy)"
+],
+"isNew": true
+},
+{
+"n": "Lightspark Public Bug Bounty",
+"pl": "intigriti",
+"max": 5000,
+"lvl": "beginner",
+"sc": 32,
+"assets": 22,
+"cats": [
+"web",
+"other"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"10+ web assets \u2192 plenty of surface to explore (+easy)"
+],
+"isNew": true
+},
+{
+"n": "Rivian Vulnerability Disclosure Program",
+"pl": "intigriti",
+"max": null,
+"lvl": "beginner",
+"sc": 22,
+"assets": 10,
+"cats": [
+"web",
+"mobile",
+"wildcard"
+],
+"hunt": [
+"XSS",
+"SQL Injection",
+"IDOR"
+],
+"why": [
+"Wildcard scope \u2192 broad recon surface, easy entry point (+easy)",
+"VDP (no cash bounty) \u2192 far less competition, ideal practice (+easy)"
+],
+"isNew": true
+}
+],
+"at": "2026-11-17"
+}

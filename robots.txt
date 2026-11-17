@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# oh hey. checking robots.txt? that's real recon, nice.
+# nothing secret here though.
+# the actual secrets are in the lab terminal on the homepage. try: ls -a
+# and if you're still here: CYBER50 = 50% off your first payment.
