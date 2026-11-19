@@ -18,12 +18,14 @@
     });
   });
 
-  /* ---------- walkthrough video (YouTube): muted autoplay, one tap for sound ---------- */
-  var yt = $('#ytPlayer'), sound = $('#sound');
-  function ytCmd(func, args) { if (yt && yt.contentWindow) yt.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*'); }
+  /* ---------- walkthrough video (self-hosted MP4): muted autoplay, one tap for sound from the start ---------- */
+  var tv = $('#tourVideo'), sound = $('#sound');
+  if (tv && reduce) { tv.autoplay = false; tv.pause(); }
   function withSound(scroll) {
     if (scroll) $('#tour').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    ytCmd('seekTo', [0, true]); ytCmd('unMute'); ytCmd('setVolume', [100]); ytCmd('playVideo');
+    if (!tv) return;
+    tv.currentTime = 0; tv.muted = false; tv.volume = 1; tv.loop = false; tv.controls = true;
+    var pl = tv.play(); if (pl && pl.catch) pl.catch(function () {});
     if (sound) sound.hidden = true;
   }
   if (sound) sound.addEventListener('click', function () { withSound(false); });

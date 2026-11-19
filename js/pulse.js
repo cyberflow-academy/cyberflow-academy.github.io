@@ -183,24 +183,16 @@
     if (document.visibilityState === 'visible' && Date.now() - lastAct < 30000) active++;
   }, 1000);
 
-  // ---- the tour video: how long they listen with sound on ----
-  var yt = document.getElementById('ytPlayer');
-  var vid = { soundSecs: 0, maxPos: 0, lastT: null, state: -1, muted: true };
-  if (yt) {
-    var hello = function () { try { yt.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'pulse', channel: 'widget' }), '*'); } catch (e) {} };
-    yt.addEventListener('load', hello); setTimeout(hello, 1500);
-    addEventListener('message', function (e) {
-      if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\//, ''))) return;
-      var d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
-      var info = d && d.info; if (!info) return;
-      if (typeof info.muted === 'boolean') vid.muted = info.muted;
-      if (typeof info.playerState === 'number') vid.state = info.playerState;
-      if (typeof info.currentTime === 'number') {
-        var t = info.currentTime;
-        if (vid.lastT != null && vid.state === 1 && !vid.muted && t > vid.lastT && t - vid.lastT < 3) vid.soundSecs += t - vid.lastT;
-        vid.lastT = t;
-        if (!vid.muted && t > vid.maxPos) vid.maxPos = t;
-      }
+  // ---- the tour video (self-hosted MP4): how long they listen with sound on ----
+  var tv = document.getElementById('tourVideo');
+  var vid = { soundSecs: 0, maxPos: 0, lastT: null };
+  if (tv) {
+    tv.addEventListener('seeking', function () { vid.lastT = null; });
+    tv.addEventListener('timeupdate', function () {
+      var t = tv.currentTime, on = !tv.paused && !tv.muted && tv.volume > 0;
+      if (vid.lastT != null && on && t > vid.lastT && t - vid.lastT < 3) vid.soundSecs += t - vid.lastT;
+      vid.lastT = t;
+      if (on && t > vid.maxPos) vid.maxPos = t;
     });
   }
 
