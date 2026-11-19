@@ -183,16 +183,42 @@
     if (document.visibilityState === 'visible' && Date.now() - lastAct < 30000) active++;
   }, 1000);
 
-  // ---- the tour video (self-hosted MP4): how long they listen with sound on ----
+  // ---- the tour video (self-hosted MP4) ----
+  // seen      = it played muted on screen for 2+ seconds (the tab visible, half the player in view)
+  // unmute    = they turned the sound on (val = seconds they had watched muted before that)
+  // smap/mmap = which 2-second slices they watched with sound / muted, as hex bits, so the
+  //             dashboard can draw a retention curve against the video's chapters
+  // ended     = they reached the end with sound on
   var tv = document.getElementById('tourVideo');
-  var vid = { soundSecs: 0, maxPos: 0, lastT: null };
+  var SLICE = 2;
+  var vid = { soundSecs: 0, mutedSecs: 0, maxPos: 0, lastT: null, sMap: [], mMap: [], seen: false, unmuted: false, ended: false, inView: !('IntersectionObserver' in window) };
+  function bits(m) {
+    var n = Math.max(m.length, Math.ceil((tv && tv.duration || 0) / SLICE)), h = '';
+    for (var i = 0; i < n; i += 4) h += ((m[i] ? 8 : 0) | (m[i + 1] ? 4 : 0) | (m[i + 2] ? 2 : 0) | (m[i + 3] ? 1 : 0)).toString(16);
+    return h.replace(/0+$/, '');
+  }
   if (tv) {
+    if (!vid.inView) new IntersectionObserver(function (es) { vid.inView = es[es.length - 1].isIntersecting; }, { threshold: 0.5 }).observe(tv);
     tv.addEventListener('seeking', function () { vid.lastT = null; });
+    tv.addEventListener('volumechange', function () {
+      if (!vid.unmuted && !tv.muted && tv.volume > 0) { vid.unmuted = true; track('video', 'unmute', Math.round(vid.mutedSecs)); }
+    });
+    tv.addEventListener('ended', function () {
+      if (!vid.ended && !tv.muted) { vid.ended = true; track('video', 'ended'); }
+    });
     tv.addEventListener('timeupdate', function () {
-      var t = tv.currentTime, on = !tv.paused && !tv.muted && tv.volume > 0;
-      if (vid.lastT != null && on && t > vid.lastT && t - vid.lastT < 3) vid.soundSecs += t - vid.lastT;
+      var t = tv.currentTime, playing = !tv.paused, on = playing && !tv.muted && tv.volume > 0;
+      var dt = vid.lastT != null && t > vid.lastT && t - vid.lastT < 3 ? t - vid.lastT : 0;
       vid.lastT = t;
-      if (on && t > vid.maxPos) vid.maxPos = t;
+      if (!dt) return;
+      var b = Math.floor(t / SLICE);
+      if (on) {
+        vid.soundSecs += dt; vid.sMap[b] = 1;
+        if (t > vid.maxPos) vid.maxPos = t;
+      } else if (playing && vid.inView && document.visibilityState === 'visible') {
+        vid.mutedSecs += dt; vid.mMap[b] = 1;
+        if (!vid.seen && vid.mutedSecs >= 2) { vid.seen = true; track('video', 'seen'); }
+      }
     });
   }
 
@@ -201,7 +227,8 @@
     scrollPct();
     track('time', 'active', active);
     track('time', 'scroll', maxScroll);
-    if (vid.soundSecs >= 1) { track('video', 'sound_secs', vid.soundSecs); track('video', 'sound_reach', vid.maxPos); }
+    if (vid.soundSecs >= 1) { track('video', 'sound_secs', vid.soundSecs); track('video', 'sound_reach', vid.maxPos); track('video', 'smap:' + bits(vid.sMap)); }
+    if (vid.mutedSecs >= 2) { track('video', 'muted_secs', vid.mutedSecs); track('video', 'mmap:' + bits(vid.mMap)); }
     send(true);
   }
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') leave(); });
