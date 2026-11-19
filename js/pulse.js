@@ -35,26 +35,55 @@
 
   // ---- where did they come from? ----
   var slug = function (s) { return String(s || '').toLowerCase().replace(/[^a-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 36); };
+  // refHost = the site that sent them, plus the page when that site shares it (most only share the domain).
+  // Phone apps often send no referrer at all; Android ones send android-app://<package>, and in-app
+  // browsers (Instagram, TikTok, Facebook...) can be spotted from the user agent.
   var refHost = '';
-  try { if (document.referrer) { var r = new URL(document.referrer); if (r.hostname !== location.hostname) refHost = r.hostname.replace(/^www\.|^m\./, ''); } } catch (e) {}
+  var APPS = [[/com\.google\.android\.youtube/, 'youtube'], [/com\.discord/, 'discord'], [/com\.reddit/, 'reddit'], [/org\.telegram/, 'telegram'],
+    [/com\.whatsapp/, 'whatsapp'], [/com\.instagram/, 'instagram'], [/com\.facebook/, 'facebook'], [/com\.twitter|com\.x\./, 'x'],
+    [/com\.zhiliaoapp|com\.ss\.android/, 'tiktok'], [/com\.google\.android\.gm/, 'gmail'], [/com\.linkedin/, 'linkedin'], [/com\.snapchat/, 'snapchat'],
+    [/com\.google\.android\.googlequicksearchbox/, 'google']];
+  try {
+    var R = document.referrer || '';
+    if (/^android-app:\/\//.test(R)) refHost = 'app:' + R.replace(/^android-app:\/\//, '').split('/')[0];
+    else if (R) {
+      var r = new URL(R);
+      if (r.hostname !== location.hostname) refHost = r.hostname.replace(/^www\.|^m\./, '') + (r.pathname.length > 1 ? r.pathname.replace(/\/$/, '') : '');
+    }
+  } catch (e) {}
+  function inApp() {
+    var ua = navigator.userAgent || '', m = [[/Instagram/, 'instagram'], [/FBAN|FBAV|FB_IAB|FBIOS|\[FB/, 'facebook'], [/musical_ly|BytedanceWebview|TikTok/i, 'tiktok'],
+      [/Snapchat/, 'snapchat'], [/LinkedInApp/, 'linkedin'], [/Twitter/, 'x'], [/Telegram/, 'telegram'], [/Discord/, 'discord'], [/ Line\//, 'line']];
+    for (var i = 0; i < m.length; i++) if (m[i][0].test(ua)) return m[i][1];
+    return '';
+  }
   function channel(host) {
-    if (!host) return 'direct';
-    var map = [[/youtube\.com|youtu\.be/, 'youtube'], [/^(x|twitter)\.com|t\.co$/, 'x'], [/discord/, 'discord'], [/google\./, 'google'],
-      [/bing\.com/, 'bing'], [/duckduckgo/, 'duckduckgo'], [/reddit/, 'reddit'], [/instagram/, 'instagram'], [/tiktok/, 'tiktok'],
-      [/facebook|fb\.com/, 'facebook'], [/whop\.com/, 'whop'], [/github/, 'github'], [/linkedin|lnkd\.in/, 'linkedin']];
+    if (!host) return inApp() || 'direct';
+    if (host.indexOf('app:') === 0) { for (var a = 0; a < APPS.length; a++) if (APPS[a][0].test(host)) return APPS[a][1]; return 'app'; }
+    host = host.split('/')[0];
+    var map = [[/cyberflow|beemo1001\.github\.io/, 'my-sites'], [/youtube\.com|youtu\.be/, 'youtube'], [/^(x|twitter)\.com|^t\.co$/, 'x'], [/discord/, 'discord'],
+      [/chatgpt\.com|openai\.com/, 'chatgpt'], [/perplexity/, 'perplexity'], [/claude\.ai/, 'claude'], [/gemini\.google|bard\.google/, 'gemini'],
+      [/copilot\.microsoft/, 'copilot'], [/google\./, 'google'], [/bing\.com/, 'bing'], [/duckduckgo/, 'duckduckgo'], [/search\.brave/, 'brave'],
+      [/yandex/, 'yandex'], [/ecosia/, 'ecosia'], [/startpage/, 'startpage'], [/qwant/, 'qwant'], [/yahoo\./, 'yahoo'], [/baidu/, 'baidu'],
+      [/reddit/, 'reddit'], [/instagram/, 'instagram'], [/tiktok/, 'tiktok'], [/facebook|fb\.com|fb\.me/, 'facebook'], [/whop\.com/, 'whop'],
+      [/github/, 'github'], [/linkedin|lnkd\.in/, 'linkedin'], [/^t\.me$|telegram/, 'telegram'], [/whatsapp|wa\.me/, 'whatsapp'],
+      [/news\.ycombinator/, 'hackernews'], [/medium\.com/, 'medium'], [/stackoverflow|stackexchange/, 'stackoverflow'],
+      [/mail\.google|outlook\.|mail\.yahoo|proton\.me/, 'email']];
     for (var i = 0; i < map.length; i++) if (map[i][0].test(host)) return map[i][1];
     return 'other';
   }
   var src = ss('cf-pulse-src');
   if (!src) {
     var tag = slug(params.get('v') || params.get('utm_campaign'));
-    var via = slug(params.get('s') || params.get('utm_source'));
+    var via = slug(params.get('s') || params.get('utm_source') || params.get('ref'));
+    // utm_source is often a domain (ChatGPT adds utm_source=chatgpt.com): fold it into the same channel names
+    if (via && /\./.test(via)) { var ch = channel(via); if (ch !== 'other') via = ch; }
     src = tag ? 'v:' + tag : via ? via : channel(refHost);
     ss('cf-pulse-src', src);
   }
   // keep shared links clean: drop the tracking bits from the address bar
-  if (params.has('v') || params.has('s') || params.has('pulse') || params.has('utm_source') || params.has('utm_campaign')) {
-    ['v', 's', 'pulse', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) { params.delete(k); });
+  if (params.has('v') || params.has('s') || params.has('ref') || params.has('pulse') || params.has('utm_source') || params.has('utm_campaign')) {
+    ['v', 's', 'ref', 'pulse', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) { params.delete(k); });
     var q = params.toString();
     try { history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash); } catch (e) {}
   }
