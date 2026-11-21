@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome in | CyberFlow's Academy</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0e0e10">
+<link rel="icon" href="../assets/tab-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="../css/site.css">
+<style>
+  /* welcome page only: lives inside the Whop "Step 0" app, so it is narrow-first */
+  .w-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0 0; }
+  .w-top img { height: 26px; width: auto; }
+  .w-pill { font: 600 13px/1 var(--mono); color: var(--green); border: 1px solid #23452f; background: #10251a; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
+  .w-hero { padding: clamp(36px, 6vw, 64px) 0 clamp(28px, 4vw, 40px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .w-hero .h1 { font-size: clamp(42px, 7vw, 76px); }
+  .w-hero > * { order: 0 !important; }  /* site.css reorders .h1 on mobile for the home hero */
+  .w-kicker { font: 700 15px/1 var(--mono); color: var(--yellow); letter-spacing: .04em; }
+  .w-video { position: relative; max-width: 860px; margin: 0 auto; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.5); background: #000; aspect-ratio: 16/9; }
+  .w-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .w-video-cap { text-align: center; color: var(--muted); font-size: 15px; margin-top: 12px; }
+  .w-sec { padding: clamp(48px, 7vw, 84px) 0 0; }
+  .w-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; margin-bottom: 28px; }
+  .w-progress { width: min(420px, 100%); height: 10px; border-radius: 99px; background: var(--panel); box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; }
+  .w-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--yellow)); transition: width .4s ease; }
+  .w-progress-l { font: 600 14px/1 var(--mono); color: var(--muted); }
+  .w-tasks { display: grid; gap: 14px; max-width: 860px; margin: 0 auto; }
+  .w-task { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; background: var(--panel); border-radius: 18px; padding: 22px; box-shadow: 0 0 0 1px var(--line) inset; transition: box-shadow .2s, opacity .2s; }
+  .w-task.done { box-shadow: 0 0 0 1px #2f7a4f inset; }
+  .w-num { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font: 800 20px/1 var(--f); background: #22222a; color: var(--yellow); }
+  .w-task.done .w-num { background: #163a26; color: var(--green); }
+  .w-task h3 { margin: 2px 0 6px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+  .w-task h3 small { font: 600 13px/1 var(--mono); color: var(--muted); margin-left: 8px; letter-spacing: 0; }
+  .w-task p { margin: 0 0 14px; color: var(--text-2); font-size: 17px; }
+  .w-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .w-check { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--f); color: var(--muted); cursor: pointer; padding: 10px 12px; border-radius: 11px; }
+  .w-check:hover { color: var(--text); background: #202027; }
+  .w-check input { width: 18px; height: 18px; accent-color: var(--green); }
+  .w-win { max-width: 860px; margin: 16px auto 0; text-align: center; padding: 18px; border-radius: 16px; background: #10251a; color: #c9f5da; box-shadow: 0 0 0 1px #23452f inset; font-weight: 600; }
+  .w-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  .w-step { background: var(--panel); border-radius: 18px; padding: 20px; box-shadow: 0 0 0 1px var(--line) inset; display: flex; flex-direction: column; gap: 10px; }
+  .w-step-h { display: flex; align-items: center; gap: 12px; }
+  .w-step-h img { width: 44px; height: 44px; }
+  .w-step-h b { display: block; font: 700 13px/1.2 var(--mono); color: var(--yellow); }
+  .w-step-h span { display: block; font-weight: 800; font-size: 19px; line-height: 1.15; }
+  .w-step ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .w-step a { display: flex; justify-content: space-between; gap: 10px; padding: 9px 12px; border-radius: 10px; background: #1f1f25; color: var(--text); text-decoration: none; font-size: 15px; font-weight: 600; }
+  .w-step a:hover { background: #2a2a33; }
+  .w-step a::after { content: "→"; color: var(--muted); }
+  .w-step .w-tip { font-size: 14px; color: var(--muted); margin: 0; }
+  .w-extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .w-extra { display: block; text-decoration: none; color: var(--text); background: var(--panel); border-radius: 18px; padding: 20px; box-shadow: 0 0 0 1px var(--line) inset; transition: transform .15s; }
+  .w-extra:hover { transform: translateY(-2px); }
+  .w-extra b { display: block; font-size: 19px; font-weight: 800; margin-bottom: 4px; }
+  .w-extra span { color: var(--text-2); font-size: 15px; }
+  .w-help { max-width: 860px; margin: clamp(48px, 7vw, 84px) auto 0; text-align: center; padding: 28px; border-radius: 20px; background: linear-gradient(180deg, #1b1b21, #141418); box-shadow: 0 0 0 1px var(--line) inset; }
+  .w-help h2 { margin: 0 0 8px; font-size: 28px; font-weight: 800; }
+  .w-help p { margin: 0 auto; color: var(--text-2); max-width: 34em; }
+  .w-foot { padding: 40px 0 48px; text-align: center; color: var(--muted); font-size: 14px; }
+  .w-note { justify-content: center; margin: 4px 0 -6px; transform: rotate(-2deg); font-size: 26px; }
+  @media (max-width: 560px) {
+    .w-task { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
+    .w-num { width: 40px; height: 40px; }
+    .w-top img { height: 22px; }
+  }
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<!-- welcome page for paid members. it lives in the Whop "Step 0" app. links open the Whop page they point at. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="arrow" viewBox="0 0 120 90"><path d="M6 10 C 34 2, 78 10, 98 62" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M80 58 L 99 66 L 106 46" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="w-top">
+    <img src="../assets/logo-wordmark-sm.png" alt="CyberFlow" width="140" height="26">
+    <span class="w-pill">● member access: on</span>
+  </header>
+
+  <section class="w-hero">
+    <p class="w-kicker">YOU'RE IN 🎉</p>
+    <h1 class="h1">Welcome to the <em>family.</em></h1>
+    <p class="sub">Grab a coffee. Here's exactly what to do in your first 30 minutes, so you walk away today with your first real win. No guessing what's next, ever.</p>
+  </section>
+
+  <figure class="w-video" style="margin:0 auto">
+    <video controls playsinline preload="metadata" poster="../assets/video/academy-walkthrough.webp" data-t="welcome_tour">
+      <source src="../assets/video/academy-walkthrough.mp4" type="video/mp4">
+    </video>
+  </figure>
+  <p class="w-video-cap">The quick tour of everything you just unlocked. Sound on.</p>
+
+  <!-- ============ first 30 minutes ============ -->
+  <section class="w-sec" id="first">
+    <div class="w-head">
+      <h2 class="h2">Your first <em>30 minutes.</em></h2>
+      <p class="sub">Three things. Tick them off as you go, this page remembers.</p>
+      <div class="w-progress" aria-hidden="true"><i id="bar"></i></div>
+      <p class="w-progress-l" id="barLabel">0 of 3 done</p>
+    </div>
+
+    <div class="w-tasks">
+      <article class="w-task" data-task="discord">
+        <div class="w-num">1</div>
+        <div>
+          <h3>Join the Discord <small>5 min</small></h3>
+          <p>Hook it up and say hi. That's where people answer when you're stuck at 2am, and where I hang out too.</p>
+          <div class="w-row">
+            <a class="btn btn-sm" target="_top" data-t="w_discord" href="https://whop.com/cyberflow/exp_7eYW8u7oDIcS1s/app/">Open the Discord <span aria-hidden="true">→</span></a>
+            <label class="w-check"><input type="checkbox"> done</label>
+          </div>
+        </div>
+      </article>
+
+      <article class="w-task" data-task="feh">
+        <div class="w-num">2</div>
+        <div>
+          <h3>Do your first lesson <small>20 min</small></h3>
+          <p>Open Step 2, Full Ethical Hacking 3.0, and do lesson one with your hands on the keyboard. Watching isn't learning, typing is.</p>
+          <div class="w-row">
+            <a class="btn btn-sm" target="_top" data-t="w_feh3" href="https://whop.com/cyberflow/exp_0aEbICEraMVblR/app/">Start Full Ethical Hacking 3.0 <span aria-hidden="true">→</span></a>
+            <label class="w-check"><input type="checkbox"> done</label>
+          </div>
+        </div>
+      </article>
+
+      <article class="w-task" data-task="lab">
+        <div class="w-num">3</div>
+        <div>
+          <h3>Beat your first lab <small>5 min</small></h3>
+          <p>HackGrid lab 1 is called "Permission Denied". A real terminal, a real problem, and it feels great when it clicks.</p>
+          <div class="w-row">
+            <a class="btn btn-sm btn-ghost" target="_top" data-t="w_lab" href="https://whop.com/cyberflow/exp_HBRu9Am7Bos9Zg/app/">Open HackGrid <span aria-hidden="true">→</span></a>
+            <label class="w-check"><input type="checkbox"> done</label>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="w-win" id="win" hidden>🎉 First win, done. That's further than most people ever get. Come back tomorrow for lesson two, small and often beats one big binge.</p>
+  </section>
+
+  <!-- ============ the path ============ -->
+  <section class="w-sec" id="path">
+    <div class="w-head">
+      <h2 class="h2">Then just follow <em>the path.</em></h2>
+      <p class="sub">Six steps, in order. Each one builds on the last, so you never get lost. It's the same order as the menu on the left.</p>
+    </div>
+
+    <div class="w-steps">
+      <div class="w-step">
+        <div class="w-step-h"><img src="../assets/steps/i1.png" alt="" width="44" height="44"><div><b>STEP 2</b><span>Ethical hacking core</span></div></div>
+        <ul>
+          <li><a target="_top" data-t="w_c_feh3" href="https://whop.com/cyberflow/exp_0aEbICEraMVblR/app/">Full Ethical Hacking 3.0</a></li>
+          <li><a target="_top" data-t="w_c_adv" href="https://whop.com/cyberflow/exp_vS04dLub8MM7gY/app/">Advanced Ethical Hacking</a></li>
+        </ul>
+        <p class="w-tip">Start here. 3.0 is the new one.</p>
+      </div>
+      <div class="w-step">
+        <div class="w-step-h"><img src="../assets/steps/i2.png" alt="" width="44" height="44"><div><b>STEP 3</b><span>Core foundations</span></div></div>
+        <ul>
+          <li><a target="_top" data-t="w_c_net" href="https://whop.com/cyberflow/exp_OL6N0qxrZ514m5/app/">Networking+</a></li>
+          <li><a target="_top" data-t="w_c_cpp" href="https://whop.com/cyberflow/exp_k1Ne4J0J8P74l6/app/">C++ For Hackers</a></li>
+          <li><a target="_top" data-t="w_c_py" href="https://whop.com/cyberflow/exp_ZLZbzLOnEcWaXB/app/">Python For Hackers</a></li>
+        </ul>
+      </div>
+      <div class="w-step">
+        <div class="w-step-h"><img src="../assets/steps/i3.png" alt="" width="44" height="44"><div><b>STEP 4</b><span>Security and OPSEC</span></div></div>
+        <ul>
+          <li><a target="_top" data-t="w_c_safe" href="https://whop.com/cyberflow/exp_ySZnHoYKFgFI21/app/">Staying Safe 101</a></li>
+          <li><a target="_top" data-t="w_c_ffx" href="https://whop.com/cyberflow/exp_PtaawD4DaK8Poy/app/">Firefox Privacy Setup</a></li>
+          <li><a target="_top" data-t="w_c_win" href="https://whop.com/cyberflow/exp_xaSPeQSdIQ5rsx/app/">Windows Hardening Scripts</a></li>
+        </ul>
+        <p class="w-tip">Do this one early. It keeps you safe while you practice.</p>
+      </div>
+      <div class="w-step">
+        <div class="w-step-h"><img src="../assets/steps/i4.png" alt="" width="44" height="44"><div><b>STEP 5</b><span>Web and bug bounty</span></div></div>
+        <ul>
+          <li><a target="_top" data-t="w_c_1k" href="https://whop.com/cyberflow/exp_59W288FGbNY2QP/app/">The $1,000 Hacker Playbook</a></li>
+          <li><a target="_top" data-t="w_c_web" href="https://whop.com/cyberflow/exp_usfnXBFnBwvFaw/app/">Website Hacking</a></li>
+          <li><a target="_top" data-t="w_c_bb" href="https://whop.com/cyberflow/exp_25nhhQ6je6IJmi/app/">Bug Bounty</a></li>
+          <li><a target="_top" data-t="w_c_labs" href="https://whop.com/cyberflow/exp_GoPGFyhqloMu51/app/">Hacking Labs: Practice</a></li>
+        </ul>
+      </div>
+      <div class="w-step">
+        <div class="w-step-h"><img src="../assets/steps/i5.png" alt="" width="44" height="44"><div><b>STEP 6</b><span>Specializations</span></div></div>
+        <ul>
+          <li><a target="_top" data-t="w_c_osint" href="https://whop.com/cyberflow/exp_ruxJ8wkS0pxskj/app/">OSINT</a></li>
+          <li><a target="_top" data-t="w_c_re" href="https://whop.com/cyberflow/exp_39474dVMijtFLw/app/">Reverse Engineering</a></li>
+          <li><a target="_top" data-t="w_c_android" href="https://whop.com/cyberflow/exp_hJp1IzczxgSOll/app/">Android Hacking</a></li>
+          <li><a target="_top" data-t="w_c_iot" href="https://whop.com/cyberflow/exp_jJyfGboMlwgtwI/app/">IoT Security</a></li>
+          <li><a target="_top" data-t="w_c_ai" href="https://whop.com/cyberflow/exp_PiyM3O1lUuioOf/app/">AI For Ethical Hacking</a></li>
+        </ul>
+        <p class="w-tip">Optional. Pick the one that excites you most.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ extras ============ -->
+  <section class="w-sec" id="extras">
+    <div class="w-head">
+      <h2 class="h2">Also yours, <em>every day.</em></h2>
+    </div>
+    <div class="w-extras">
+      <a class="w-extra" target="_top" data-t="w_intel" href="https://whop.com/cyberflow/exp_E3piY40fWiEUOw/app/"><b>☕ Daily Intel Drops</b><span>A fresh security story every day. Two minutes with your coffee.</span></a>
+      <a class="w-extra" target="_top" data-t="w_bountyflow" href="https://whop.com/cyberflow/exp_SUX6Kgq38007TT/app/"><b>🎯 BountyFlow</b><span>Bug bounty programs worth your time, sorted for you.</span></a>
+      <a class="w-extra" target="_top" data-t="w_seclab" href="https://whop.com/cyberflow/exp_FgWUetE9YI1jm3/app/"><b>🧪 SecLab</b><span>Decoders and mini labs for when you just want to poke at stuff.</span></a>
+      <a class="w-extra" target="_top" data-t="w_docs" href="https://whop.com/cyberflow/exp_rrdOAC77RyEuuD/app/"><b>📚 CyberDocs</b><span>PDFs and the stuff that doesn't fit in a video.</span></a>
+    </div>
+  </section>
+
+  <section class="w-help">
+    <h2>Stuck? Ask me.</h2>
+    <p>Hit <b>Support</b> in the menu on the left and message me, or ask in the Discord. I read everything. Nobody here was born knowing this, so ask the "dumb" questions too.</p>
+  </section>
+
+  <footer class="w-foot">CyberFlow's Academy · learn it in the right order</footer>
+</div>
+
+<script>
+(() => {
+  const KEY = 'cf_welcome_done';
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { done = {}; }
+  const tasks = [...document.querySelectorAll('.w-task')];
+  const bar = document.getElementById('bar'), label = document.getElementById('barLabel'), win = document.getElementById('win');
+  function render() {
+    let n = 0;
+    tasks.forEach(t => { const on = !!done[t.dataset.task]; t.classList.toggle('done', on); t.querySelector('input').checked = on; if (on) n++; });
+    bar.style.width = (n / tasks.length * 100) + '%';
+    label.textContent = n + ' of ' + tasks.length + ' done';
+    win.hidden = n < tasks.length;
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+  tasks.forEach(t => {
+    t.querySelector('input').addEventListener('change', e => { done[t.dataset.task] = e.target.checked; save(); render();
+      if (window.pulse && window.pulse.click) { try { window.pulse.click('w_done_' + t.dataset.task); } catch (er) {} } });
+    // opening the task's main button counts as progress too
+    t.querySelector('a.btn').addEventListener('click', () => { done[t.dataset.task] = true; save(); render(); });
+  });
+  render();
+})();
+</script>
+<script src="../js/pulse.js?v=4" data-endpoint="https://cyberflow-pulse.cyberflow-academy.workers.dev/e" defer></script>
+</body>
+</html>
