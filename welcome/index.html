@@ -60,6 +60,11 @@
   .w-help { max-width: 860px; margin: clamp(48px, 7vw, 84px) auto 0; text-align: center; padding: 28px; border-radius: 20px; background: linear-gradient(180deg, #1b1b21, #141418); box-shadow: 0 0 0 1px var(--line) inset; }
   .w-help h2 { margin: 0 0 8px; font-size: 28px; font-weight: 800; }
   .w-help p { margin: 0 auto; color: var(--text-2); max-width: 34em; }
+  .w-refer { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 20px 28px; align-items: center; padding: 28px; border-radius: 20px; background: linear-gradient(135deg, #2a1d05, #17130a 60%, #141418); box-shadow: 0 0 0 1px #4a3a12 inset; }
+  .w-refer h2 { margin: 0 0 8px; font-size: clamp(26px, 3.4vw, 34px); font-weight: 800; letter-spacing: -.02em; }
+  .w-refer h2 em { font-style: normal; color: var(--yellow); }
+  .w-refer p { margin: 0; color: var(--text-2); font-size: 17px; }
+  @media (max-width: 640px) { .w-refer { grid-template-columns: 1fr; } }
   .w-foot { padding: 40px 0 48px; text-align: center; color: var(--muted); font-size: 14px; }
   .w-note { justify-content: center; margin: 4px 0 -6px; transform: rotate(-2deg); font-size: 26px; }
   @media (max-width: 560px) {
@@ -212,6 +217,16 @@
       <a class="w-extra" target="_top" data-t="w_bountyflow" href="https://whop.com/cyberflow/exp_SUX6Kgq38007TT/app/"><b>🎯 BountyFlow</b><span>Bug bounty programs worth your time, sorted for you.</span></a>
       <a class="w-extra" target="_top" data-t="w_seclab" href="https://whop.com/cyberflow/exp_FgWUetE9YI1jm3/app/"><b>🧪 SecLab</b><span>Decoders and mini labs for when you just want to poke at stuff.</span></a>
       <a class="w-extra" target="_top" data-t="w_docs" href="https://whop.com/cyberflow/exp_rrdOAC77RyEuuD/app/"><b>📚 CyberDocs</b><span>PDFs and the stuff that doesn't fit in a video.</span></a>
+    </div>
+  </section>
+
+  <section class="w-sec" id="refer">
+    <div class="w-refer">
+      <div>
+        <h2>Bring a friend, <em>earn 30%.</em></h2>
+        <p>You get your own invite link. When a friend joins through it, you get 30% of what they pay, every month they stay. Drop it in your Discord servers and group chats, wherever your hacker friends hang out.</p>
+      </div>
+      <a class="btn" target="_top" data-t="w_affiliate" href="https://whop.com/cyberflow/affiliates">Get my invite link <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
