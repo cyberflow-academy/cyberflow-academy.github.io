@@ -3,128 +3,147 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Phone Malware Removal Guide · Free PDF | CyberFlow</title>
-<meta name="description" content="A free, step-by-step guide to removing malware from Android and iPhone: from the five-minute fix to a full reinstall, with every official tool linked.">
+<title>Phone Malware Removal Guide · Free guide | CyberFlow</title>
+<meta name="description" content="A free, step-by-step guide to removing malware from Android and iPhone: from the five-minute fix to a full reinstall, with every official tool linked. No email, no sign-up.">
+<meta property="og:title" content="Phone Malware Removal Guide · Free guide">
+<meta property="og:description" content="A free, step-by-step guide to removing malware from Android and iPhone: from the five-minute fix to a full reinstall, with every official tool linked. No email, no sign-up.">
+<meta property="og:image" content="https://cyberflow-academy.github.io/guides/phone-virus/cover.webp">
 <meta name="theme-color" content="#0e0e10">
 <link rel="icon" href="../../assets/tab-icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap">
 <style>
   :root { --bg:#0e0e10; --panel:#17171c; --line:#2a2a31; --text:#fff; --muted:#a3a3ad; --red:#ff3a50; --yellow:#f5c20f; --green:#3ddc84; }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { margin:0; background:var(--bg); color:var(--text); font:500 16px/1.55 Urbanist, "Segoe UI", system-ui, sans-serif; }
   a { color: inherit; }
   img { max-width:100%; }
-  .wrap { max-width: 1060px; margin: 0 auto; padding: 18px 16px 110px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 18px 16px 110px; }
   .top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
   .top img { height:22px; width:auto; }
   .top a.home { font-size:14px; color:var(--muted); text-decoration:none; }
 
-  /* offer strip */
-  .strip { margin:14px 0 0; display:flex; align-items:center; justify-content:center; gap:10px 16px; flex-wrap:wrap; text-align:center;
-           padding:10px 14px; border-radius:12px; background:#1d1606; border:1px solid #4a3a12; font-size:15px; }
+  .strip { margin:14px 0 0; display:flex; align-items:center; justify-content:center; gap:8px 14px; flex-wrap:wrap; text-align:center;
+           padding:9px 14px; border-radius:12px; background:#1d1606; border:1px solid #4a3a12; font-size:14.5px; }
   .strip b { color: var(--yellow); }
-  .strip a { white-space:nowrap; font-weight:900; color:#111; background:var(--yellow); text-decoration:none; padding:6px 12px; border-radius:9px; font-size:14px; }
+  .strip a { white-space:nowrap; font-weight:900; color:#111; background:var(--yellow); text-decoration:none; padding:5px 11px; border-radius:9px; font-size:13.5px; }
 
-  .hero { text-align:center; padding: 22px 0 20px; }
+  /* hero: the value promise first */
+  .hero { text-align:center; padding: 26px 0 26px; }
   .eyebrow { display:inline-block; font-size:12.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--green);
              border:1px solid #1f5a3a; background:#0f2119; padding:5px 11px; border-radius:99px; margin-bottom:14px; }
-  h1 { font-size: clamp(32px, 4.4vw, 48px); line-height:1.03; font-weight:900; letter-spacing:-.03em; margin:0 0 12px; }
+  h1 { font-size: clamp(32px, 4.6vw, 50px); line-height:1.03; font-weight:900; letter-spacing:-.03em; margin:0 0 12px; }
   h1 em { font-style:normal; color:var(--red); }
-  .sub { color:var(--muted); font-size:17.5px; margin:0 auto; max-width: 36em; }
+  .sub { color:var(--muted); font-size:17.5px; margin:0 auto; max-width: 34em; }
+  .trust { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 22px; list-style:none; padding:0; margin:18px 0 0; font-size:14.5px; color:#d6d6dc; }
+  .trust li::before { content:"✓ "; color:var(--green); font-weight:900; }
 
-  /* two cards: the free guide (quiet) and the academy (loud) */
-  .grid { display:grid; grid-template-columns: 0.8fr 1.2fr; gap:40px; align-items:start; }
+  /* the guide is the page */
+  .layout { display:grid; grid-template-columns: minmax(0,1fr) 340px; gap:28px; align-items:start; }
+  .paper { background:#fff; color:#1c1f24; border-radius:16px; padding:34px 44px 38px; font:400 16.5px/1.68 Inter, "Segoe UI", Arial, sans-serif;
+           box-shadow:0 30px 80px rgba(0,0,0,.45); }
+  .paper a { color:#b3122a; text-decoration:underline; text-decoration-color:#e8b3bb; text-underline-offset:2px; }
+  .paper a:hover { text-decoration-color:#b3122a; }
+  .dochead { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid #e4e6ea; font-size:13.5px; color:#6b7079; }
+  .dochead b { color:#1c1f24; font-weight:700; }
+  .paper .dochead a { margin-left:auto; text-decoration:none; color:#1c1f24; font-weight:600; border:1px solid #d5d8de; border-radius:8px; padding:5px 10px; }
+  .paper .dochead a:hover { background:#f4f5f7; }
+  .callout { border:1px solid #f1c7cd; background:#fdf3f4; border-radius:8px; padding:12px 14px; margin:0 0 20px; font-size:15px; }
+  .callout b { color:#9b0f24; }
+  .how { background:#f6f7f9; border-radius:8px; padding:14px 16px; margin:0 0 10px; font-size:15px; }
+  .how ol { margin:6px 0 0; padding-left:20px; }
+  .paper .how a { color:#1c1f24; text-decoration-color:#c4c8cf; }
+  .paper h2 { font-size:23px; line-height:1.25; font-weight:800; letter-spacing:-.01em; margin:36px 0 6px; scroll-margin-top:18px; }
+  .paper h2 .n { display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; margin-right:10px; border-radius:8px;
+                 background:#b3122a; color:#fff; font-size:16px; vertical-align:3px; }
+  .paper section { scroll-margin-top:18px; }
+  .when { color:#6b7079; font-size:15px; margin:0 0 10px; }
+  .paper h3 { font-size:16.5px; font-weight:700; margin:16px 0 4px; }
+  .paper p { margin:0 0 10px; }
+  .paper ul { margin:0 0 10px; padding-left:20px; }
+  .paper li { margin:0 0 7px; }
+  .next { color:#6b7079; font-size:14.5px; font-style:italic; }
+  .print-only { display:none; }
+  .endmark { margin:30px 0 0; padding-top:16px; border-top:1px solid #e4e6ea; font-size:14.5px; color:#6b7079; }
 
-  .guide { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:18px; }
-  .guide .label { margin:0 0 12px; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-  .guide .cover { display:block; border-radius:8px; overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,.5); background:#fff; aspect-ratio: 210/297; }
-  .guide .cover img { display:block; width:100%; height:100%; object-fit:cover; object-position:top; }
-  .guide h2 { font-size:20px; line-height:1.2; margin:16px 0 4px; font-weight:800; }
-  .guide .meta { margin:0 0 10px; color:var(--muted); font-size:14px; }
-  .guide ol { margin:0 0 16px; padding-left:20px; color:#d8d8de; font-size:14.5px; line-height:1.5; }
-  .guide ol li + li { margin-top:2px; }
-  .dl { display:flex; align-items:center; justify-content:center; gap:8px; padding:12px; border-radius:12px; border:1.5px solid #4a4a55;
-        color:#fff; font-weight:800; font-size:15.5px; text-decoration:none; }
-  .dl:hover { border-color:#8a8a96; background:#1f1f26; }
-  .readon { display:block; text-align:center; margin-top:10px; font-size:14px; color:var(--muted); }
-
-  /* the hand-drawn note + arrow between the two */
-  .note { display:flex; align-items:flex-end; gap:4px; margin:0 0 6px 18px; position:relative; z-index:2; font:700 25px/1.05 Caveat, cursive; color:var(--yellow); transform:rotate(-2deg); }
-  .note svg { flex:none; width:50px; height:48px; margin-bottom:-4px; }
-
-  .offer { position:relative; border-radius:22px; padding:26px 26px 22px; background:linear-gradient(160deg,#2b1f05 0%,#17130a 45%,#141418 100%);
-           border:2px solid var(--yellow); box-shadow:0 0 0 6px rgba(245,194,15,.08), 0 30px 90px rgba(245,194,15,.10); }
-  .badge { display:inline-flex; align-items:center; gap:6px; background:var(--red); color:#fff; font-weight:900; font-size:13px; letter-spacing:.04em;
-           padding:6px 12px; border-radius:99px; text-transform:uppercase; }
-  .offer h2 { font-size: clamp(28px, 3.2vw, 36px); line-height:1.05; letter-spacing:-.02em; font-weight:900; margin:12px 0 8px; }
-  .offer h2 em { font-style:normal; color:var(--yellow); }
-  .offer .lead { margin:0 0 14px; color:#e9e3d0; font-size:16.5px; }
-  .covers { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:16px 0 0; }
-  .covers img { display:block; width:100%; height:auto; border-radius:8px; border:1px solid #3a3320; }
-  .ticks { list-style:none; margin:20px 0 0; padding:0; display:grid; gap:7px; }
-  .ticks li { position:relative; padding-left:30px; font-size:16px; color:#f1ecdc; }
-  .ticks li::before { content:"✓"; position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--yellow); color:#111;
-                      font-weight:900; font-size:13px; display:grid; place-items:center; }
-  .ticks b { color:#fff; }
-
-  .price { display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 10px; margin:0 0 12px; }
-  .price s { color:#8f8a7a; font-size:20px; font-weight:700; }
-  .price strong { font-size:40px; line-height:1; font-weight:900; letter-spacing:-.02em; }
-  .price span { color:#e9e3d0; font-size:16px; font-weight:700; }
-  .join { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:68px; padding:14px 18px; border-radius:16px;
-          background:var(--yellow); color:#111; font-weight:900; font-size:21px; text-decoration:none; letter-spacing:-.01em;
-          box-shadow:0 10px 0 #a8820a, 0 18px 40px rgba(245,194,15,.25); transition:transform .08s, box-shadow .08s; }
+  /* sidebar: always one click away, never in the way */
+  .side { position:sticky; top:16px; display:grid; gap:12px; }
+  .dlcard { display:grid; grid-template-columns:40px 1fr auto; gap:0 12px; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:10px 12px; }
+  .dlcard img { grid-row:span 2; width:40px; border-radius:3px; background:#fff; }
+  .dlcard b { font-size:15px; line-height:1.2; }
+  .dlcard span { font-size:12.5px; color:var(--muted); grid-column:2; }
+  .dlcard a { grid-column:3; grid-row:1 / span 2; padding:8px 12px; border-radius:10px; border:1.5px solid #4a4a55; font-weight:800; font-size:14px; text-decoration:none; white-space:nowrap; }
+  .dlcard a:hover { border-color:#8a8a96; background:#1f1f26; }
+  .note { margin:10px 0 6px 10px; font:700 23px/1 Caveat, cursive; color:var(--yellow); transform:rotate(-2deg); display:flex; align-items:flex-end; gap:4px; }
+  .note svg { width:40px; height:40px; flex:none; margin-bottom:-2px; }
+  .offer { border-radius:18px; padding:20px 18px 18px; background:linear-gradient(160deg,#2b1f05 0%,#17130a 50%,#141418 100%);
+           border:2px solid var(--yellow); box-shadow:0 0 0 5px rgba(245,194,15,.07), 0 24px 70px rgba(245,194,15,.09); }
+  .badge { display:inline-block; background:var(--red); color:#fff; font-weight:900; font-size:12px; letter-spacing:.04em; padding:5px 10px; border-radius:99px; text-transform:uppercase; }
+  .offer h3 { font-size:24px; line-height:1.08; letter-spacing:-.02em; font-weight:900; margin:12px 0 6px; }
+  .offer h3 em, .thanks h2 em { font-style:normal; color:var(--yellow); }
+  .offer p { margin:0 0 12px; color:#e9e3d0; font-size:15px; line-height:1.45; }
+  .price { display:flex; align-items:baseline; flex-wrap:wrap; gap:2px 8px; margin:0 0 12px; }
+  .price s { color:#8f8a7a; font-size:17px; font-weight:700; }
+  .price strong { font-size:34px; line-height:1; font-weight:900; letter-spacing:-.02em; }
+  .price span { color:#e9e3d0; font-size:14.5px; font-weight:700; }
+  .join { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:58px; padding:12px 16px; border-radius:14px;
+          background:var(--yellow); color:#111; font-weight:900; font-size:18.5px; text-decoration:none;
+          box-shadow:0 8px 0 #a8820a, 0 16px 36px rgba(245,194,15,.22); transition:transform .08s, box-shadow .08s; }
   .join:hover { background:#ffd22e; }
-  .join:active { transform:translateY(6px); box-shadow:0 4px 0 #a8820a; }
-  .join .ar { font-size:24px; transition:transform .15s; }
+  .join:active { transform:translateY(5px); box-shadow:0 3px 0 #a8820a; }
+  .join .ar { transition:transform .15s; }
   .join:hover .ar { transform:translateX(4px); }
-  .fine { text-align:center; margin:16px 0 0; font-size:14px; color:#cfc8b2; }
-  .fine b { color:var(--yellow); }
-
-  .proof { display:flex; align-items:center; gap:12px; margin:18px 0 0; padding-top:16px; border-top:1px solid #3a3320; }
+  .offer .fine { text-align:center; margin:22px 0 0; font-size:13px; color:#cfc8b2; }
+  .offer .fine b { color:var(--yellow); }
+  .proof { display:flex; align-items:center; gap:10px; margin:14px 0 0; padding-top:12px; border-top:1px solid #3a3320; }
   .faces { display:flex; flex:none; }
-  .faces img { width:34px; height:34px; border-radius:50%; border:2px solid #17130a; }
-  .faces img + img { margin-left:-10px; }
-  .proof p { margin:0; font-size:14.5px; color:#e9e3d0; line-height:1.35; }
-  .stars { color:var(--yellow); letter-spacing:1px; }
-  .quote { margin:14px 0 0; font-size:15px; color:#d9d3c0; font-style:italic; }
-  .quote cite { font-style:normal; color:var(--muted); font-size:13.5px; }
+  .faces img { width:28px; height:28px; border-radius:50%; border:2px solid #17130a; }
+  .faces img + img { margin-left:-9px; }
+  .proof p { margin:0; font-size:13.5px; line-height:1.3; }
+  .stars { color:var(--yellow); }
 
-  .foot { text-align:center; color:#6f6f7a; font-size:13px; margin-top:34px; }
+  /* end of guide: a personal note, not a pitch */
+  .thanks { margin:34px auto 0; max-width:760px; background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:28px 30px; }
+  .from { display:flex; align-items:center; gap:10px; margin:0 0 12px; font-size:14px; color:var(--muted); }
+  .from img { width:38px; height:38px; border-radius:50%; }
+  .from b { color:#fff; display:block; font-size:15px; }
+  .thanks h2 { font-size:30px; line-height:1.1; letter-spacing:-.02em; font-weight:900; margin:0 0 10px; }
+  .thanks p { color:#d6d6dc; font-size:16.5px; margin:0 0 12px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start; margin:18px 0 0; }
+  .row .join { flex:1 1 300px; width:auto; }
+  .share { flex:0 1 auto; display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border-radius:14px; border:1.5px solid #4a4a55;
+           background:none; color:#fff; font:800 16px Urbanist, sans-serif; cursor:pointer; }
+  .share:hover { border-color:#8a8a96; background:#1f1f26; }
+  .covers { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:26px 0 0; }
+  .covers img { display:block; width:100%; height:auto; border-radius:8px; border:1px solid var(--line); }
+  .later { margin:14px 0 0 !important; font-size:14.5px !important; color:var(--muted) !important; }
 
+  .foot { text-align:center; color:#6f6f7a; font-size:13px; margin-top:30px; }
   .dock { display:none; }
 
-  @media (max-width: 860px) {
-    .grid { grid-template-columns:1fr; gap:0; }
-    .offer { padding:20px 16px 18px; }
-    .note { justify-content:center; margin:18px 0 0; font-size:24px; text-align:center; }
-    .note svg { width:44px; height:50px; }
-    /* compact guide row on phones: cover left, text right */
-    .guide { display:grid; grid-template-columns:96px 1fr; gap:4px 14px; padding:14px; }
-    .guide .label { grid-column:1 / -1; margin-bottom:6px; }
-    .guide .cover { grid-row: 2 / span 3; align-self:start; }
-    .guide { align-items:start; grid-template-rows:auto auto auto 1fr; }
-    .guide h2 { margin:0 0 2px; font-size:17px; }
-    .guide .meta { margin:0; font-size:13.5px; }
-    .guide ol { display:none; }
-    .guide .dl { grid-column:2; padding:9px; font-size:14.5px; margin-top:8px; align-self:end; }
-    .guide .readon { grid-column:1 / -1; margin-top:8px; }
+  @media (max-width: 980px) {
+    .layout { grid-template-columns:1fr; }
+    .side { display:none; }
+    .paper { padding:22px 18px 26px; border-radius:14px; font-size:16px; }
+    .paper h2 { font-size:21px; margin-top:30px; }
+    .thanks { padding:22px 18px; }
+    .thanks h2 { font-size:26px; }
     .dock { display:flex; gap:8px; position:fixed; left:10px; right:10px; bottom:10px; z-index:9; }
     .dock a { text-align:center; padding:15px 10px; border-radius:14px; font-weight:900; font-size:16px; text-decoration:none; }
     .dock .d1 { flex:none; width:58px; background:#24242b; color:#fff; border:1px solid #3a3a44; }
     .dock .d2 { flex:1; background:var(--yellow); color:#111; box-shadow:0 8px 24px rgba(0,0,0,.5); }
   }
-  @media (max-width: 400px) { .covers { grid-template-columns:repeat(2,1fr); } .covers img:nth-child(3) { display:none; } .join { font-size:19px; } }
-  @media (prefers-reduced-motion: reduce) { .join, .join .ar { transition:none; } }
+  @media (max-width: 420px) { .covers { grid-template-columns:repeat(2,1fr); } .covers img:nth-child(3) { display:none; } .dochead span.v { display:none; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .join, .join .ar { transition:none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <a href="../../?v=phone-guide-logo"><img src="../../assets/logo-wordmark-sm.png" alt="CyberFlow" width="120" height="22"></a>
-    <a class="home" data-t="guide_home" href="../../?v=phone-guide">cyberflow-academy.github.io</a>
+    <a href="../../?v=phone-virus-guide-logo"><img src="../../assets/logo-wordmark-sm.png" alt="CyberFlow" width="120" height="22"></a>
+    <a class="home" data-t="guide_home" href="../../?v=phone-virus-guide">cyberflow-academy.github.io</a>
   </header>
 
   <div class="strip">
@@ -133,66 +152,162 @@
   </div>
 
   <section class="hero">
-    <span class="eyebrow">Free guide · Android &amp; iPhone</span>
+    <span class="eyebrow">Free guide · Android & iPhone</span>
     <h1>Get malware off your phone, <em>step by step.</em></h1>
-    <p class="sub">A clean 3-page guide, from the five-minute fix to a full reinstall, with every official tool linked.</p>
+    <p class="sub">From the five-minute fix to a full reinstall. Start at step 1 and stop as soon as the problem's gone.</p>
+    <ul class="trust">
+      <li>Free. No email, no sign-up</li>
+      <li>Every link goes to the official source</li>
+      <li>Checked November 2026</li>
+    </ul>
   </section>
 
-  <div class="grid">
-    <!-- the free guide: quiet on purpose -->
-    <aside class="guide">
-      <p class="label">Your free guide</p>
-      <a class="cover" data-t="guide_cover" href="phone-malware-removal-guide.pdf"><img src="cover.webp" alt="First page of the Phone Malware Removal Guide" width="794" height="1123"></a>
-      <h2>Phone Malware Removal Guide</h2>
-      <p class="meta">PDF · 3 pages · 15 tools linked</p>
-      <ol>
-        <li>Find and remove the malicious app</li>
-        <li>Scan the phone, secure your accounts</li>
-        <li>Factory reset, the correct way</li>
-        <li>Reinstall the operating system</li>
-        <li>Maximum protection for high-risk users</li>
-      </ol>
-      <a class="dl" data-t="guide_pdf" href="phone-malware-removal-guide.pdf" download>⬇ Download the PDF</a>
-      <a class="readon" data-t="guide_read_online" href="pdf.html">or read it in your browser</a>
-    </aside>
+  <div class="layout">
+    <main class="paper" id="guide">
+      <div class="dochead"><b>Phone Malware Removal Guide</b><span class="v">· Version 1.0 · November 2026</span><a data-t="guide_pdf_top" href="phone-malware-removal-guide.pdf" download>⬇ PDF</a></div>
+<div class="callout"><b>Read this first.</b> If you suspect a partner, ex-partner or someone close to you installed monitoring software (stalkerware) on your phone, do not remove it yet. Removal can alert that person and destroy evidence. Contact a support service and plan your next steps from a different device. See the Coalition Against Stalkerware at <a href="https://stopstalkerware.org/">stopstalkerware.org</a>.</div>
 
-    <!-- the academy: the one big action on the page -->
-    <div class="col">
-    <p class="note" aria-hidden="true"><span>the guide fixes your phone.<br>this shows you how they got in</span>
-      <svg viewBox="0 0 60 58" fill="none" stroke="#f5c20f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6 C 30 8, 44 22, 46 52"/><path d="M36 42 L46 53 L55 41"/></svg>
-    </p>
-    <section class="offer" id="join">
-      <span class="badge">🔥 First 100 people · 50% off</span>
-      <h2>Learn how phones <em>actually get hacked.</em></h2>
-      <p class="lead">Cyberflow Academy is one step-by-step path from zero to ethical hacker, with a full Android Hacking course along the way.</p>
-      <div class="price"><s>$30.45</s><strong>$15.22</strong><span>/ month for your first 3 months</span></div>
-      <a class="join" data-t="guide_join" href="https://whop.com/c/cyberflow/month29?promoCode=PHONE50">Join Cyberflow Academy <span class="ar">→</span></a>
-      <p class="fine">Code <b>PHONE50</b> is already applied at checkout · cancel anytime · Whop's fee included</p>
-      <ul class="ticks">
-        <li><b>480+ lessons in one order</b>, so you never wonder what to learn next</li>
-        <li><b>87 hands-on labs</b>: you're in a terminal from your very first lesson</li>
-        <li><b>A daily Discord</b> with hundreds of members, and you can message me anytime</li>
-      </ul>
-      <div class="proof">
-        <div class="faces">
-          <img src="../../assets/avatars/ox80.webp" alt="" width="34" height="34">
-          <img src="../../assets/avatars/pinkylee.webp" alt="" width="34" height="34">
-          <img src="../../assets/avatars/aliuarjun.webp" alt="" width="34" height="34">
-          <img src="../../assets/avatars/spoofers.webp" alt="" width="34" height="34">
+<div class="how"><b>How to use this guide.</b> Work through the steps in order and stop as soon as the problem is resolved. Most infections are solved in Step 1.
+<ol><li><a href="#s1">Find and remove the malicious app</a></li><li><a href="#s2">Scan the phone and secure your accounts</a></li><li><a href="#s3">Factory reset, the correct way</a></li><li><a href="#s4">Reinstall the operating system</a></li><li><a href="#s5">Maximum protection for high-risk users</a></li></ol></div>
+
+<section id="s1">
+<h2><span class="n">1</span>Find and remove the malicious app</h2>
+<p class="when">About five minutes. Most phone infections come from an app the owner installed.</p>
+<h3>Android</h3>
+<ul>
+  <li>Restart in <a href="https://support.google.com/android/answer/7665064">Safe Mode</a>. This starts the phone with every app you installed disabled. If the pop-ups or unusual behavior stop, one of your apps is responsible.</li>
+  <li>Uninstall your most recently installed apps one at a time until the problem is gone.</li>
+  <li>If an app cannot be uninstalled, it has probably given itself administrator rights. Open Settings → Security → <b>Device admin apps</b>, revoke its access, then uninstall it.</li>
+  <li>Open Settings → <b>Accessibility</b> and disable any service you do not recognize. This permission lets an app read your screen and act on your behalf.</li>
+</ul>
+<h3>iPhone</h3>
+<ul>
+  <li>Remove <a href="https://support.apple.com/guide/iphone/delete-calendar-subscriptions-iph3d1110d4/ios">calendar subscriptions</a> you did not add. These are the usual source of fake "virus" alerts.</li>
+  <li>Open Settings → General → <a href="https://support.apple.com/guide/iphone/install-or-remove-configuration-profiles-iph6c493b19/ios">VPN &amp; Device Management</a> and remove any profile you did not install.</li>
+</ul>
+<h3>All phones</h3>
+<ul><li>In your browser, block <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid">notifications</a> from any website you do not recognize.</li></ul>
+<p class="next">If the problem continues, go to Step 2.</p>
+</section>
+
+<section id="s2">
+<h2><span class="n">2</span>Scan the phone and secure your accounts</h2>
+<p class="when">No single scanner catches everything, and sometimes the phone is clean but an account is compromised.</p>
+<ul>
+  <li><b>Android:</b> run a <a href="https://support.google.com/googleplay/answer/2812853">Google Play Protect</a> scan, then a second scan with <a href="https://www.malwarebytes.com/android">Malwarebytes</a> (free).</li>
+  <li><b>iPhone:</b> avoid paid "antivirus" apps. iOS does not allow apps to inspect other apps, so they cannot scan the device.</li>
+  <li><b>Suspected commercial spyware:</b> use <a href="https://iverify.io/products/basic">iVerify Basic</a> (iPhone and Android) or Amnesty International's free <a href="https://docs.mvt.re/">Mobile Verification Toolkit</a>.</li>
+  <li><b>Accounts:</b> review signed-in devices for your <a href="https://myaccount.google.com/device-activity">Google account</a> and <a href="https://support.apple.com/en-us/102649">Apple Account</a>, and WhatsApp (Settings → Linked devices). Sign out anything you do not recognize.</li>
+  <li>Change your passwords from a computer you trust, not from the affected phone.</li>
+</ul>
+<p class="next">If the infection persists, go to Step 3.</p>
+</section>
+
+<section id="s3">
+<h2><span class="n">3</span>Factory reset, the correct way</h2>
+<ul>
+  <li>Back up photos, contacts and files. <b>Do not back up apps</b>: restoring an app backup can reinstall the malware.</li>
+  <li><a href="https://support.google.com/android/answer/6088915">Reset the phone</a> and set it up as a new device.</li>
+  <li>Install all system updates before anything else, then download your apps again from the official store.</li>
+</ul>
+<p>A factory reset erases user data but not the system partition. Malware that installed itself there can survive.</p>
+<p class="next">If the problem returns after a reset, go to Step 4.</p>
+</section>
+
+<section id="s4">
+<h2><span class="n">4</span>Reinstall the operating system</h2>
+<ul>
+  <li><b>Google Pixel:</b> use the <a href="https://flash.android.com/">Android Flash Tool</a> in Chrome. It erases the device and requires an unlocked bootloader; lock it again when finished.</li>
+  <li><b>Samsung:</b> use <a href="https://www.samsung.com/us/support/owners/app/smart-switch">Smart Switch</a> emergency recovery, or visit an authorized service center.</li>
+  <li><b>iPhone:</b> put the phone in <a href="https://support.apple.com/en-us/118106">recovery mode</a>, connect it to a computer and choose Restore. This installs a fresh, Apple-signed copy of iOS.</li>
+  <li><b>Unbranded devices</b> with no official firmware cannot be reliably cleaned. Replace them.</li>
+</ul>
+</section>
+
+<section id="s5">
+<h2><span class="n">5</span>Maximum protection for high-risk users</h2>
+<p class="when">For journalists, activists and anyone who may be targeted by commercial spyware.</p>
+<ul>
+  <li>Restart your phone at least once a week, as the <a href="https://media.defense.gov/2020/Jul/28/2002465283/-1/-1/0/MOBILE_DEVICE_BEST_PRACTICES_FINAL_V3%20-%20COPY.PDF">NSA recommends</a>. Many spyware infections do not survive a reboot.</li>
+  <li><b>iPhone:</b> enable <a href="https://support.apple.com/en-us/105120">Lockdown Mode</a>. A genuine <a href="https://support.apple.com/en-us/102174">Apple threat notification</a> never asks you to click a link or install anything.</li>
+  <li><b>Android 16:</b> enable <a href="https://support.google.com/android/answer/16339980">Advanced Protection</a>.</li>
+  <li>Free expert help: <a href="https://securitylab.amnesty.org/">Amnesty International Security Lab</a> and the <a href="https://www.accessnow.org/help/">Access Now Digital Security Helpline</a>.</li>
+</ul>
+</section>
+
+<section id="prevention">
+<h2>Prevention</h2>
+<ul>
+  <li><b>Keep the phone updated.</b> Security updates alone would have blocked the 2026 Play Store campaign discussed in the video. A phone that no longer receives updates should be replaced.</li>
+  <li>When buying an Android device, confirm it is <a href="https://support.google.com/googleplay/answer/7165974">Play Protect certified</a>. Avoid unusually cheap no-name devices (see the <a href="https://www.ic3.gov/PSA/2025/PSA250605">FBI's BadBox 2.0 warning</a>).</li>
+  <li>Pop-ups claiming your phone "has viruses" are advertisements. The cleaner apps they promote are a common source of infection.</li>
+</ul>
+</section>
+
+<section class="print-only">
+<h2>Resources</h2>
+<table>
+  <tr><th style="width:34%">Tool or guide</th><th>Address</th></tr>
+  <tr><td>Android Safe Mode</td><td class="u">support.google.com/android/answer/7665064</td></tr>
+  <tr><td>Google Play Protect</td><td class="u">support.google.com/googleplay/answer/2812853</td></tr>
+  <tr><td>Malwarebytes for Android</td><td class="u">malwarebytes.com/android</td></tr>
+  <tr><td>iVerify Basic</td><td class="u">iverify.io/products/basic</td></tr>
+  <tr><td>Mobile Verification Toolkit</td><td class="u">docs.mvt.re · github.com/mvt-project/mvt</td></tr>
+  <tr><td>Google device activity</td><td class="u">myaccount.google.com/device-activity</td></tr>
+  <tr><td>Apple Account devices</td><td class="u">support.apple.com/en-us/102649</td></tr>
+  <tr><td>Android factory reset</td><td class="u">support.google.com/android/answer/6088915</td></tr>
+  <tr><td>Android Flash Tool (Pixel)</td><td class="u">flash.android.com</td></tr>
+  <tr><td>Samsung Smart Switch</td><td class="u">samsung.com/us/support/owners/app/smart-switch</td></tr>
+  <tr><td>iPhone recovery mode</td><td class="u">support.apple.com/en-us/118106</td></tr>
+  <tr><td>Apple Lockdown Mode</td><td class="u">support.apple.com/en-us/105120</td></tr>
+  <tr><td>Android Advanced Protection</td><td class="u">support.google.com/android/answer/16339980</td></tr>
+  <tr><td>Coalition Against Stalkerware</td><td class="u">stopstalkerware.org</td></tr>
+  <tr><td>Access Now Helpline</td><td class="u">accessnow.org/help</td></tr>
+</table>
+</section>
+
+      <p class="endmark">That's the whole guide. For your own devices only.</p>
+    </main>
+
+    <aside class="side">
+      <div class="dlcard">
+        <img src="cover.webp" alt="" width="40" height="57">
+        <b>Keep a copy</b>
+        <a data-t="guide_pdf" href="phone-malware-removal-guide.pdf" download>⬇ PDF</a>
+        <span>3 pages · free, no email</span>
+      </div>
+      <p class="note" aria-hidden="true">curious how they got in?
+        <svg viewBox="0 0 40 40" fill="none" stroke="#f5c20f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6 C 20 6, 30 16, 30 34"/><path d="M22 27 L30 35 L37 26"/></svg>
+      </p>
+      <div class="offer">
+        <span class="badge">🎁 Reader offer · first 100</span>
+        <h3>Learn how phones <em>actually get hacked.</em></h3>
+        <p>One step-by-step path from zero to ethical hacker, with a full Android Hacking course along the way.</p>
+        <div class="price"><s>$30.45</s><strong>$15.22</strong><span>/ month for your first 3 months</span></div>
+        <a class="join" data-t="guide_join" href="https://whop.com/c/cyberflow/month29?promoCode=PHONE50">Join Cyberflow Academy <span class="ar">→</span></a>
+        <p class="fine">Code <b>PHONE50</b> is applied for you · cancel anytime</p>
+        <div class="proof">
+          <div class="faces"><img src="../../assets/avatars/ox80.webp" alt=""><img src="../../assets/avatars/pinkylee.webp" alt=""><img src="../../assets/avatars/aliuarjun.webp" alt=""><img src="../../assets/avatars/spoofers.webp" alt=""></div>
+          <p><span class="stars">★★★★★</span> <b>4.8</b> from 120+ reviews<br><b>1,000+</b> members</p>
         </div>
-        <p><span class="stars">★★★★★</span> <b>4.8</b> from 120+ reviews<br><b>1,000+</b> members learning right now</p>
       </div>
-      <div class="covers">
-        <img src="../../assets/covers/android-hacking.webp" alt="Android Hacking course" width="640" height="360" loading="lazy">
-        <img src="../../assets/covers/full-ethical-hacking-3-0.webp" alt="Full Ethical Hacking 3.0 course" width="640" height="360" loading="lazy">
-        <img src="../../assets/covers/hacking-labs-practice.webp" alt="Hacking Labs: Practice" width="640" height="360" loading="lazy">
-      </div>
-      <p class="quote">“Having this course is like I've got a roadmap on the first day, and then the waypoints. It's like I'm in a game or something, and it's beginner friendly too.” <cite>Kabir Dubey, on Whop</cite></p>
-    </section>
-    </div>
+    </aside>
   </div>
 
-  <p class="foot">CyberFlow · everything in the guide is for your own devices only</p>
+  <section class="thanks" id="note">
+    <div class="from"><img src="../../assets/avatar.png" alt=""><div><b>CyberFlow</b>a quick note from me</div></div>
+    <h2>Hope that fixed it.</h2>
+    <p>This guide is free and it stays free. No email, no sign-up, nothing to unlock. If it helped, the best thank-you is sending it to a friend who needs it.</p>
+    <p>And if you ever want to know how this works from the inside, how malware gets onto a phone and how people get paid to find it, that's exactly why I built Cyberflow Academy.</p>
+    <div class="row">
+      <a class="join" data-t="guide_join_end" href="https://whop.com/c/cyberflow/month29?promoCode=PHONE50">Join with PHONE50 · 50% off 3 months <span class="ar">→</span></a>
+      <button class="share" type="button" id="share" data-t="guide_share">🔗 Share this guide</button>
+    </div>
+    <div class="covers"><img src="../../assets/covers/android-hacking.webp" alt="" width="640" height="360" loading="lazy"><img src="../../assets/covers/full-ethical-hacking-3-0.webp" alt="" width="640" height="360" loading="lazy"><img src="../../assets/covers/hacking-labs-practice.webp" alt="" width="640" height="360" loading="lazy"></div>
+    <p class="later">Not today? Totally fine. The guide is yours either way.</p>
+  </section>
+
+  <p class="foot">CyberFlow · For your own devices only</p>
 </div>
 
 <div class="dock">
@@ -200,6 +315,27 @@
   <a class="d2" data-t="guide_join_dock" href="https://whop.com/c/cyberflow/month29?promoCode=PHONE50">Join · 50% off 3 months →</a>
 </div>
 
+<script>
+document.getElementById('share').addEventListener('click', async (e) => {
+  const url = location.origin + location.pathname, b = e.currentTarget;
+  try {
+    if (navigator.share) { await navigator.share({ title: document.title, url }); return; }
+    await navigator.clipboard.writeText(url); b.textContent = '✓ Link copied';
+  } catch (_) { b.textContent = url; }
+});
+</script>
+<script>
+// reading depth: which step each visitor reaches, and whether they get to the end note (Pulse type "sec", names guide_s1..guide_note)
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.pulse || !window.IntersectionObserver) return;
+  const seen = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting || seen.has(e.target.id)) return;
+    seen.add(e.target.id); window.pulse('sec', 'guide_' + e.target.id); io.unobserve(e.target);
+  }), { rootMargin: '0px 0px -40% 0px' });
+  document.querySelectorAll('#guide section[id], #note').forEach((el) => io.observe(el));
+});
+</script>
 <script src="../../js/pulse.js?v=4" data-endpoint="https://cyberflow-pulse.cyberflow-academy.workers.dev/e" defer></script>
 </body>
 </html>
