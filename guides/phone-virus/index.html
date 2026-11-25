@@ -3,136 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nuke (Almost) Any Virus Off Your Phone · The Checklist | CyberFlow</title>
-<meta name="description" content="Every step and every tool from the CyberFlow video, in order: from the five-minute fix to a full reflash.">
+<title>Nuke (Almost) Any Virus Off Your Phone · Free PDF | CyberFlow</title>
+<meta name="description" content="The free step-by-step PDF from the CyberFlow video: from the five-minute fix to a full reflash, with every tool linked.">
 <meta name="theme-color" content="#0e0e10">
 <link rel="icon" href="../../assets/tab-icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&display=swap">
 <style>
-  :root { --bg:#0e0e10; --panel:#17171c; --line:#2a2a31; --text:#fff; --muted:#a3a3ad; --red:#ff3a50; --yellow:#f5c20f; --green:#3ddc84; }
+  :root { --bg:#0e0e10; --panel:#17171c; --line:#2a2a31; --text:#fff; --muted:#a3a3ad; --red:#ff3a50; --yellow:#f5c20f; }
   * { box-sizing: border-box; }
-  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { margin:0; background:var(--bg); color:var(--text); font:500 15px/1.55 Urbanist, "Segoe UI", system-ui, sans-serif; }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 36px 24px 48px; }
-  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:26px; }
-  .top img { height:24px; }
-  .dl { font:700 13px/1 Urbanist, sans-serif; color:#111; background:var(--yellow); padding:10px 14px; border-radius:10px; text-decoration:none; }
-  h1 { font-size: 40px; line-height:1.02; font-weight:900; letter-spacing:-.03em; margin:0 0 10px; }
+  body { margin:0; background:var(--bg); color:var(--text); font:500 16px/1.55 Urbanist, "Segoe UI", system-ui, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 22px 16px 120px; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .top img { height:22px; }
+  .top a.home { font-size:14px; color:var(--muted); text-decoration:none; }
+
+  /* academy strip, seen before anything else */
+  .strip { margin:18px 0 0; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+           padding:10px 14px; border-radius:12px; background:#1d1606; border:1px solid #4a3a12; font-size:14.5px; }
+  .strip b { color: var(--yellow); }
+  .strip a { white-space:nowrap; font-weight:800; color:var(--yellow); text-decoration:none; }
+
+  .hero { text-align:center; padding: 26px 0 18px; }
+  h1 { font-size: clamp(32px, 5.2vw, 52px); line-height:1.02; font-weight:900; letter-spacing:-.03em; margin:0 0 10px; }
   h1 em { font-style:normal; color:var(--red); }
-  .lead { color:var(--muted); font-size:16px; margin:0 0 22px; max-width: 40em; }
-  .warn { background:#2a1013; border:1px solid #5a1d25; border-radius:14px; padding:14px 16px; margin: 0 0 22px; font-size:14px; }
-  .warn b { color:#ff8a96; }
-  .lvl { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin:0 0 14px; break-inside: avoid; }
-  .lvl h2 { margin:0 0 4px; font-size:20px; font-weight:800; letter-spacing:-.01em; }
-  .lvl h2 span { font:700 12px/1 "JetBrains Mono", monospace; color:var(--yellow); margin-right:8px; letter-spacing:.04em; }
-  .lvl .when { color:var(--muted); font-size:13.5px; margin:0 0 10px; }
-  ul { margin:0; padding:0; list-style:none; display:grid; gap:7px; }
-  li { position:relative; padding-left:26px; }
-  li::before { content:""; position:absolute; left:2px; top:5px; width:12px; height:12px; border:2px solid #5d5d68; border-radius:4px; }
-  a { color:#8fd3ff; text-decoration:none; border-bottom:1px solid #2f5a75; }
-  .tag { font:700 10.5px/1 "JetBrains Mono", monospace; color:#111; background:#cfd3dc; border-radius:5px; padding:3px 5px; margin-right:6px; vertical-align:1px; }
-  .tag.ios { background:#d9d9e3; } .tag.and { background:var(--green); }
-  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .note { font-size:13.5px; color:var(--muted); }
-  .cta { margin-top:22px; padding:20px; border-radius:16px; background:linear-gradient(135deg,#2a1d05,#17130a 60%,#141418); border:1px solid #4a3a12; display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; break-inside: avoid; }
-  .cta h3 { margin:0 0 4px; font-size:19px; font-weight:800; }
-  .cta p { margin:0; color:#d8d3c4; font-size:14px; }
-  .cta a.btn { background:var(--yellow); color:#111; border:0; font-weight:800; padding:12px 16px; border-radius:11px; white-space:nowrap; }
-  .foot { margin-top:18px; color:#6f6f7a; font-size:12px; text-align:center; }
-  @media (max-width:640px){ .grid2{grid-template-columns:1fr;} h1{font-size:32px;} .cta{grid-template-columns:1fr;} }
-  @media print { .p2 { break-before: page; margin-top: 22px; } .dl { display:none; } .wrap{ padding:22px 22px 10px; } body{ font-size:13.5px; } h1{font-size:34px;} .lvl{ padding:14px 16px; margin-bottom:10px; } }
-  @page { size: A4; margin: 0; }
+  .sub { color:var(--muted); font-size:17px; margin:0 auto; max-width: 34em; }
+
+  /* the pdf itself */
+  .viewer { background:#1a1a20; border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  @media (min-width: 681px) { .viewer { max-height: 50vh; overflow-y: auto; } }
+  .viewer canvas { display:block; width:100%; height:auto; border-radius:8px; }
+  .viewer canvas + canvas { margin-top:14px; }
+  .loading { text-align:center; color:var(--muted); padding:60px 0; }
+
+  /* download + academy, side by side */
+  .actions { display:grid; grid-template-columns: 1fr 1.25fr; gap:14px; margin:18px 0 0; }
+  .dl { display:flex; align-items:center; justify-content:center; gap:10px; min-height:64px; border-radius:14px; background:#fff; color:#111;
+        font-weight:900; font-size:18px; text-decoration:none; }
+  .dl:hover { background:#e9e9ef; }
+  .acad { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:14px;
+          background:linear-gradient(135deg,#2a1d05,#17130a 60%,#141418); border:1px solid #4a3a12; }
+  .acad p { margin:0; font-size:14.5px; line-height:1.35; color:#e9e3d0; }
+  .acad p b { color:#fff; }
+  .acad a { flex:none; background:var(--yellow); color:#111; font-weight:900; text-decoration:none; padding:12px 14px; border-radius:11px; white-space:nowrap; }
+
+  .foot { text-align:center; color:#6f6f7a; font-size:13px; margin-top:26px; }
+
+  /* phone: keep both buttons on screen while reading */
+  .dock { display:none; }
+  @media (max-width: 680px) {
+    .actions { grid-template-columns: 1fr; }
+    .viewer { padding:8px; border-radius:12px; }
+    .dock { display:flex; gap:8px; position:fixed; left:10px; right:10px; bottom:10px; z-index:9; }
+    .dock a { flex:1; text-align:center; padding:14px 8px; border-radius:12px; font-weight:900; font-size:15px; text-decoration:none; }
+    .dock .d1 { background:#fff; color:#111; }
+    .dock .d2 { background:var(--yellow); color:#111; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <img src="../../assets/logo-wordmark-sm.png" alt="CyberFlow" width="130" height="24">
-    <a class="dl" data-t="guide_pdf" href="cyberflow-phone-virus-checklist.pdf" download>⬇ Download the PDF</a>
+    <a href="../../?v=phone-guide-logo"><img src="../../assets/logo-wordmark-sm.png" alt="CyberFlow" width="120" height="22"></a>
+    <a class="home" data-t="guide_home" href="../../?v=phone-guide">cyberflow-academy.github.io</a>
   </header>
 
-  <h1>Nuke (almost) any virus <em>off your phone.</em></h1>
-  <p class="lead">Every step and every tool from the video, in order. Start at level one and stop as soon as the problem is gone. Do this on your own phone only.</p>
-
-  <div class="warn"><b>Stop first if you think someone you know put stalkerware on your phone</b> (a partner or an ex). Removing it can alert them and delete evidence. Contact a support service and make a safety plan first, using a different device: <a href="https://stopstalkerware.org/">Coalition Against Stalkerware</a>.</div>
-
-  <section class="lvl">
-    <h2><span>LEVEL 1</span>Find and remove the bad app</h2>
-    <p class="when">Most infections are an app you installed yourself. Five minutes.</p>
-    <ul>
-      <li><span class="tag and">ANDROID</span>Boot into <a href="https://support.google.com/android/answer/7665064">Safe Mode</a>. If the pop-ups stop, uninstall your newest apps until they're gone.</li>
-      <li><span class="tag and">ANDROID</span>App won't uninstall? Settings → Security → <b>Device admin apps</b>: remove its permission, then delete it.</li>
-      <li><span class="tag and">ANDROID</span>Settings → <b>Accessibility</b>: turn off anything you don't recognize (it can read your screen and tap for you).</li>
-      <li><span class="tag">BOTH</span>Block website notifications you don't know: <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid">Chrome site notifications</a>.</li>
-      <li><span class="tag ios">IPHONE</span>Delete spam <a href="https://support.apple.com/guide/iphone/delete-calendar-subscriptions-iph3d1110d4/ios">calendar subscriptions</a> (the fake "virus alert" events).</li>
-      <li><span class="tag ios">IPHONE</span>Settings → General → <a href="https://support.apple.com/guide/iphone/install-or-remove-configuration-profiles-iph6c493b19/ios">VPN &amp; Device Management</a>: remove any profile you didn't install.</li>
-    </ul>
-  </section>
-
-  <section class="lvl">
-    <h2><span>LEVEL 2</span>Second opinion and your accounts</h2>
-    <p class="when">No single scanner catches everything, and sometimes the phone is fine but the account isn't.</p>
-    <ul>
-      <li><span class="tag and">ANDROID</span>Run a <a href="https://support.google.com/googleplay/answer/2812853">Play Protect</a> scan, then a free scan with <a href="https://www.malwarebytes.com/android">Malwarebytes</a>.</li>
-      <li><span class="tag ios">IPHONE</span>Don't pay for "antivirus" apps: iOS doesn't let apps scan other apps.</li>
-      <li><span class="tag">BOTH</span>Worried about real spyware: <a href="https://iverify.io/products/basic">iVerify Basic</a>, or Amnesty's free <a href="https://docs.mvt.re/">Mobile Verification Toolkit</a> (<a href="https://github.com/mvt-project/mvt">GitHub</a>).</li>
-      <li><span class="tag">BOTH</span>Sign out devices you don't recognize: <a href="https://myaccount.google.com/device-activity">Google devices</a> · <a href="https://myaccount.google.com/security-checkup">Google Security Checkup</a> · <a href="https://support.apple.com/en-us/102649">Apple Account devices</a>.</li>
-      <li><span class="tag">BOTH</span>WhatsApp → Settings → <b>Linked devices</b>: log out anything that isn't yours.</li>
-      <li><span class="tag">BOTH</span>Change your passwords <b>from a computer you trust</b>.</li>
-    </ul>
-  </section>
-
-  <div class="grid2">
-    <section class="lvl">
-      <h2><span>LEVEL 3</span>Factory reset, the right way</h2>
-      <ul>
-        <li>Back up photos, contacts and files, <b>not apps</b>.</li>
-        <li><a href="https://support.google.com/android/answer/6088915">Reset the phone</a>, set it up <b>as new</b>.</li>
-        <li>Install updates first, then fresh apps from the official store.</li>
-      </ul>
-      <p class="note" style="margin-top:8px">A reset doesn't touch the system partition. If it's back, go to level 4.</p>
-    </section>
-    <section class="lvl">
-      <h2><span>LEVEL 4</span>Reflash the firmware</h2>
-      <ul>
-        <li><span class="tag and">PIXEL</span><a href="https://flash.android.com/">Android Flash Tool</a> (wipes everything; relock the bootloader after).</li>
-        <li><span class="tag and">SAMSUNG</span><a href="https://www.samsung.com/us/support/owners/app/smart-switch">Smart Switch</a> recovery, or a service center.</li>
-        <li><span class="tag ios">IPHONE</span><a href="https://support.apple.com/en-us/118106">Recovery mode → Restore</a>.</li>
-        <li>No official firmware for your cheap no-name phone? Stop using it.</li>
-      </ul>
-    </section>
+  <div class="strip">
+    <span>📚 Want to learn how phone hacking actually works? <b>PHONE50</b>: first 100 people get half off 3 months.</span>
+    <a data-t="guide_academy_strip" href="../../?v=phone-guide">See the academy →</a>
   </div>
 
-  <section class="lvl p2">
-    <h2><span>LEVEL 5</span>If you have real enemies</h2>
-    <ul>
-      <li><span class="tag">BOTH</span>Restart your phone every week (the <a href="https://media.defense.gov/2020/Jul/28/2002465283/-1/-1/0/MOBILE_DEVICE_BEST_PRACTICES_FINAL_V3%20-%20COPY.PDF">NSA's mobile best practices</a>).</li>
-      <li><span class="tag ios">IPHONE</span>Turn on <a href="https://support.apple.com/en-us/105120">Lockdown Mode</a>. Know what a real <a href="https://support.apple.com/en-us/102174">Apple threat notification</a> looks like (it never asks you to click or install anything).</li>
-      <li><span class="tag and">ANDROID 16</span>Turn on <a href="https://support.google.com/android/answer/16339980">Advanced Protection</a>.</li>
-      <li><span class="tag">BOTH</span>Journalists and activists: <a href="https://securitylab.amnesty.org/">Amnesty Security Lab</a> · <a href="https://www.accessnow.org/help/">Access Now Digital Security Helpline</a> (free).</li>
-    </ul>
+  <section class="hero">
+    <h1>Nuke (almost) any virus <em>off your phone.</em></h1>
+    <p class="sub">The free step-by-step guide from the video. Five steps, every tool linked. Do them in order and stop when the problem's gone.</p>
   </section>
 
-  <section class="lvl">
-    <h2><span>ALWAYS</span>What actually protects you</h2>
-    <ul>
-      <li>Keep your phone <b>updated</b>. That alone stopped the Play Store attack from the video. No updates anymore? A supported phone fixes more than any app.</li>
-      <li>Buying Android? Check it's <a href="https://support.google.com/googleplay/answer/7165974">Play Protect certified</a>. Avoid weirdly cheap no-name boxes (<a href="https://www.ic3.gov/PSA/2025/PSA250605">FBI warning on BadBox 2.0</a>).</li>
-      <li>"Your phone has 13 viruses" pop-ups are ads, and the "cleaner" they push is the risk.</li>
-    </ul>
-  </section>
+  <div class="viewer" id="viewer"><p class="loading">Loading the guide…</p></div>
 
-  <aside class="cta">
-    <div>
-      <h3>Want to understand how this stuff actually works?</h3>
-      <p>Cyberflow Academy: one path, six steps, 480+ lessons and 87 hands-on labs, including Android Hacking. Code <b>PHONE50</b>: the first 100 people get half off their first three months.</p>
+  <div class="actions">
+    <a class="dl" data-t="guide_pdf" href="cyberflow-phone-virus-checklist.pdf" download>⬇ Download the free PDF</a>
+    <div class="acad">
+      <p><b>Want to understand how this works?</b> 480+ lessons, 87 labs, Android Hacking included. Code PHONE50, first 100 people.</p>
+      <a data-t="guide_academy" href="../../?v=phone-guide">Join →</a>
     </div>
-    <a class="btn" data-t="guide_academy" href="https://cyberflow-academy.github.io/?v=phone-guide">See the academy →</a>
-  </aside>
-  <p class="foot">CyberFlow · Educational use only. Do all of this on devices you own or have permission to check.</p>
+  </div>
+
+  <p class="foot">CyberFlow · for your own devices only</p>
 </div>
+
+<div class="dock">
+  <a class="d1" data-t="guide_pdf_dock" href="cyberflow-phone-virus-checklist.pdf" download>⬇ PDF</a>
+  <a class="d2" data-t="guide_academy_dock" href="../../?v=phone-guide">PHONE50 →</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(async () => {
+  const box = document.getElementById('viewer');
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf = await pdfjsLib.getDocument('cyberflow-phone-virus-checklist.pdf').promise;
+    box.innerHTML = '';
+    const scale = Math.min(2.2, (window.devicePixelRatio || 1) * 1.6);
+    for (let n = 1; n <= pdf.numPages; n++) {
+      const page = await pdf.getPage(n);
+      const vp = page.getViewport({ scale });
+      const c = document.createElement('canvas');
+      c.width = vp.width; c.height = vp.height;
+      box.appendChild(c);
+      await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+    }
+  } catch (e) {
+    box.innerHTML = '<p class="loading">Couldn\'t show the preview here. Use the download button below.</p>';
+  }
+})();
+</script>
 <script src="../../js/pulse.js?v=4" data-endpoint="https://cyberflow-pulse.cyberflow-academy.workers.dev/e" defer></script>
 </body>
 </html>
