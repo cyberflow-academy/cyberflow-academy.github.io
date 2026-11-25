@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Hacking Projects Guide · CyberFlow</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm;
+    @bottom-left  { content: "CyberFlow · Free Hacking Projects Guide"; font: 500 8pt Inter, sans-serif; color: #8a8f98; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font: 500 8pt Inter, sans-serif; color: #8a8f98; }
+  }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; color: #1c1f24; font: 400 10.2pt/1.55 Inter, "Segoe UI", Arial, sans-serif; background: #fff; }
+  a { color: #b3122a; text-decoration: none; }
+  @media screen { html { background:#e9e9ee; } body { max-width: 210mm; margin: 0 auto; padding: 22mm 20mm; box-sizing: border-box; background:#fff; } }
+  @media screen and (max-width: 700px) { body { padding: 20px 16px; } table { display:block; overflow-x:auto; } }
+
+  .mast { display: flex; align-items: center; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid #e4e6ea; margin-bottom: 18px; }
+  .mast img { width: 20px; height: 20px; }
+  .mast span { font-weight: 800; font-size: 10.5pt; letter-spacing: .01em; }
+  .mast em { margin-left: auto; font-style: normal; color: #8a8f98; font-size: 8.5pt; }
+
+  h1 { font-size: 22pt; line-height: 1.15; font-weight: 800; letter-spacing: -.015em; margin: 6px 0 6px; }
+  .lede { font-size: 11pt; color: #4a4f57; margin: 0 0 14px; }
+  .meta { font-size: 8.5pt; color: #8a8f98; margin: 0 0 18px; }
+
+  .callout { border: 1px solid #f1c7cd; background: #fdf3f4; border-radius: 6px; padding: 10px 12px; margin: 0 0 18px; font-size: 9.6pt; }
+  .callout b { color: #9b0f24; }
+
+  .how { background: #f6f7f9; border-radius: 6px; padding: 10px 12px; margin: 0 0 20px; font-size: 9.6pt; }
+  .how ol { margin: 4px 0 0; padding-left: 18px; }
+
+  h2 { font-size: 13pt; font-weight: 800; margin: 22px 0 6px; padding-top: 2px; break-after: avoid; }
+  h2 .n { display: inline-block; min-width: 22px; color: #b3122a; }
+  .when { color: #6b7079; font-size: 9.4pt; margin: 0 0 8px; }
+  h3 { font-size: 10.2pt; font-weight: 700; margin: 10px 0 3px; break-after: avoid; }
+  p { margin: 0 0 7px; }
+  ul { margin: 0 0 8px; padding-left: 18px; }
+  li { margin: 0 0 4px; }
+  .next { color: #6b7079; font-size: 9.2pt; font-style: italic; margin-top: 4px; }
+  section { break-inside: avoid-page; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6px 0 14px; }
+  th { text-align: left; font-weight: 700; color: #4a4f57; border-bottom: 1.5px solid #1c1f24; padding: 5px 6px; }
+  td { border-bottom: 1px solid #e4e6ea; padding: 5px 6px; vertical-align: top; }
+  td.u { color: #6b7079; word-break: break-all; font-size: 8.4pt; }
+
+  .about { border-top: 1px solid #e4e6ea; margin-top: 18px; padding-top: 12px; break-inside: avoid; }
+  .about h2 { margin-top: 0; }
+  .print-only { }
+  .how ol a { color: inherit; }
+  .about .offer { margin-top: 8px; padding: 10px 12px; border: 1.5px solid #1c1f24; border-radius: 6px; font-size: 9.8pt; }
+</style>
+</head>
+<body>
+
+<div class="mast"><img src="../../assets/favicon.svg" alt=""><span>CyberFlow</span><em>cyberflow-academy.github.io</em></div>
+
+<h1>Free Hacking Projects Guide</h1>
+<p class="lede">Ten hands-on security projects that cost nothing, from tricking an AI to running your own honeypot, with setup steps and safety rules for each.</p>
+<p class="meta">Version 1.0 · November 2026 · For your own devices and legal practice targets only</p>
+
+<div class="callout"><b>Read this first.</b> Run every project only on devices and accounts you own, or on targets built for practice. Keep the honeypot (Project 3) in the cloud, never on your home network. Use Cheat Engine (Project 5) only on offline single-player games. Never run malware on your own computer.</div>
+
+<div class="how"><b>How to use this guide.</b> The projects are independent, so start with whichever one interests you most. Each one costs nothing and fits in an evening.
+<ol><li><a href="#s1">Trick an AI into breaking its rules</a></li><li><a href="#s2">Hack a deliberately vulnerable web store</a></li><li><a href="#s3">Run a honeypot that records real attackers</a></li><li><a href="#s4">Booby-trap your own files</a></li><li><a href="#s5">Edit a game's memory</a></li><li><a href="#s6">Test how fast your passwords fall</a></li><li><a href="#s7">Inspect your own phone's traffic</a></li><li><a href="#s8">Watch real malware in a sandbox</a></li><li><a href="#s9">Build a new-device alert for your Wi-Fi</a></li><li><a href="#s10">Play hacking wargames</a></li></ol></div>
+
+<section id="s1">
+<h2><span class="n">1</span>Trick an AI into breaking its rules</h2>
+<p class="when">Skill: prompt injection, the technique of making an AI system ignore its own instructions.</p>
+<ul>
+  <li>Open <a href="https://play.lakera.ai/agent-breaker">Lakera Agent Breaker</a>, the successor to Lakera's Gandalf game. It presents fake AI applications that you are allowed to attack.</li>
+  <li>Read each app's goal, then try to make it reveal or do something it is instructed not to. Keep notes on which phrasings work and why.</li>
+  <li>Compare your notes with how real programs define AI vulnerabilities, for example Google's <a href="https://bughunters.google.com/about/rules/google-friends/ai-vulnerability-reward-program-rules">AI Vulnerability Reward Program rules</a>.</li>
+</ul>
+</section>
+
+<section id="s2">
+<h2><span class="n">2</span>Hack a deliberately vulnerable web store</h2>
+<p class="when">Skill: real web vulnerabilities, practiced on an application built to be attacked.</p>
+<ul>
+  <li>Install <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a> on your own computer, following the instructions in its <a href="https://github.com/juice-shop/juice-shop">official repository</a>.</li>
+  <li>Your first challenge is to find the hidden score board. It tracks every challenge you solve.</li>
+  <li>Work through the beginner challenges, such as logging in as the administrator and viewing another user's basket.</li>
+  <li>If you get stuck, use the official companion book, <a href="https://pwning.owasp-juice.shop/">Pwning OWASP Juice Shop</a>.</li>
+</ul>
+</section>
+
+<section id="s3">
+<h2><span class="n">3</span>Run a honeypot that records real attackers</h2>
+<p class="when">Skill: seeing how automated attacks behave. In a 2019 Sophos study, the first attack on a cloud honeypot arrived 52 seconds after it went online.</p>
+<ul>
+  <li>Create a free virtual machine using <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">Oracle Cloud Always Free resources</a>. Do not run a honeypot on your home network.</li>
+  <li>Install <a href="https://github.com/cowrie/cowrie">Cowrie</a>, an SSH and Telnet honeypot, following the <a href="https://docs.cowrie.org/">Cowrie documentation</a>.</li>
+  <li>Leave it running for at least a day, then read its logs: the passwords attackers tried and the commands they typed.</li>
+  <li>Follow your cloud provider's terms of use, and shut the machine down when you are finished.</li>
+</ul>
+</section>
+
+<section id="s4">
+<h2><span class="n">4</span>Booby-trap your own files</h2>
+<p class="when">Skill: detection. A canary token alerts you the moment someone opens or uses a decoy.</p>
+<ul>
+  <li>Go to <a href="https://canarytokens.org/">canarytokens.org</a> (free, by Thinkst) and create a token, such as a <a href="https://docs.canarytokens.org/guide/ms-word-token.html">Word document</a>, a set of fake <a href="https://docs.canarytokens.org/guide/aws-keys-token.html">AWS API keys</a> or a <a href="https://docs.canarytokens.org/guide/credit-card-token.html">credit card number</a>.</li>
+  <li>Give it a tempting name, such as "passwords" or "salaries", and store it on your own laptop or cloud drive.</li>
+  <li>Open it once yourself to see the alert email you will receive if anyone else does.</li>
+</ul>
+</section>
+
+<section id="s5">
+<h2><span class="n">5</span>Edit a game's memory</h2>
+<p class="when">Skill: memory scanning, the same idea analysts use to see what a program stores.</p>
+<ul>
+  <li>Download <a href="https://www.cheatengine.org/">Cheat Engine</a> from its official site only.</li>
+  <li>Complete its built-in tutorial first (see the <a href="https://wiki.cheatengine.org/index.php?title=Tutorials">Cheat Engine tutorials</a>).</li>
+  <li>In an offline single-player game, search memory for a value such as your gold, change it in the game, and search again until one address remains. Then edit it.</li>
+  <li>Never use it on online games. Anti-cheat systems detect it and accounts get banned.</li>
+</ul>
+</section>
+
+<section id="s6">
+<h2><span class="n">6</span>Test how fast your passwords fall</h2>
+<p class="when">Skill: understanding password strength from the attacker's side.</p>
+<ul>
+  <li>Install <a href="https://hashcat.net/hashcat/">Hashcat</a>. It uses your graphics card. See the <a href="https://hashcat.net/wiki/">Hashcat wiki</a> for setup and example hashes.</li>
+  <li>Create hashes of test passwords that resemble your own habits, and of a long random passphrase.</li>
+  <li>Run Hashcat against them and compare how long each one survives.</li>
+  <li>Only crack hashes you created yourself. Use what you learn to switch to long, unique passphrases and a password manager.</li>
+</ul>
+</section>
+
+<section id="s7">
+<h2><span class="n">7</span>Inspect your own phone's traffic</h2>
+<p class="when">Skill: seeing which servers your apps contact and what they send.</p>
+<ul>
+  <li>Install <a href="https://mitmproxy.org/">mitmproxy</a> (see <a href="https://docs.mitmproxy.org/stable/overview-getting-started/">getting started</a>) or <a href="https://httptoolkit.com/">HTTP Toolkit</a> (see its <a href="https://httptoolkit.com/docs/guides/android/">Android guide</a>).</li>
+  <li>Route your phone's traffic through it and install its certificate as described in the <a href="https://docs.mitmproxy.org/stable/concepts-certificates/">certificate documentation</a>.</li>
+  <li>Open one app at a time and note every domain it contacts. Some apps use certificate pinning, so their traffic will not be readable.</li>
+  <li>Remove the certificate from your phone when you are finished.</li>
+</ul>
+</section>
+
+<section id="s8">
+<h2><span class="n">8</span>Watch real malware in a sandbox</h2>
+<p class="when">Skill: malware behavior analysis, without risking your own computer.</p>
+<ul>
+  <li>Create a free account on <a href="https://any.run/">ANY.RUN</a>. The <a href="https://any.run/plans/">Community plan</a> runs analyses in virtual machines in your browser.</li>
+  <li>Browse public analyses to watch real malware families run: the processes they start, the files they change and the servers they contact.</li>
+  <li>Free analyses are public. Never upload personal or work files, and never download samples to your own machine.</li>
+</ul>
+</section>
+
+<section id="s9">
+<h2><span class="n">9</span>Build a new-device alert for your Wi-Fi</h2>
+<p class="when">Skill: basic networking and scripting.</p>
+<ul>
+  <li>Install <a href="https://www.python.org/downloads/">Python</a> and write a script that scans your own home network every few minutes, for example using <a href="https://nmap.org/book/man-host-discovery.html">Nmap host discovery</a>.</li>
+  <li>Store the devices it has seen, and compare each new scan against that list.</li>
+  <li>When a new device appears, send a message to your Discord server using a <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks">webhook</a>.</li>
+  <li>Scan only networks you own or manage.</li>
+</ul>
+</section>
+
+<section id="s10">
+<h2><span class="n">10</span>Play hacking wargames</h2>
+<p class="when">Skill: the command line, through puzzles.</p>
+<ul>
+  <li>Start <a href="https://overthewire.org/wargames/bandit/">OverTheWire Bandit</a>. Each level hides the password to the next on a Linux server, and you find it with terminal commands.</li>
+  <li>Join TryHackMe's <a href="https://tryhackme.com/adventofcyber26">Advent of Cyber 2026</a>, which starts on 1 December with a new free challenge each day.</li>
+  <li>When you finish Bandit, continue with the other <a href="https://overthewire.org/wargames/">OverTheWire wargames</a>.</li>
+</ul>
+</section>
+
+<section id="prevention">
+<h2>Staying safe and legal</h2>
+<ul>
+  <li><b>Only test what you own or have written permission to test.</b> Practice targets such as Juice Shop and wargames exist so that you never need to test anyone else's systems.</li>
+  <li>Keep honeypots isolated in the cloud and switch them off when you are done.</li>
+  <li>Never run malware on your own devices. Use a sandbox such as ANY.RUN instead.</li>
+  <li>Download every tool only from the official site or repository linked in this guide.</li>
+</ul>
+</section>
+
+<section class="print-only">
+<h2>Resources</h2>
+<table>
+  <tr><th style="width:34%">Tool or guide</th><th>Address</th></tr>
+  <tr><td>Lakera Agent Breaker</td><td class="u">play.lakera.ai/agent-breaker</td></tr>
+  <tr><td>OWASP Juice Shop</td><td class="u">owasp.org/www-project-juice-shop · github.com/juice-shop/juice-shop</td></tr>
+  <tr><td>Pwning OWASP Juice Shop</td><td class="u">pwning.owasp-juice.shop</td></tr>
+  <tr><td>Cowrie honeypot</td><td class="u">github.com/cowrie/cowrie · docs.cowrie.org</td></tr>
+  <tr><td>Oracle Cloud Always Free</td><td class="u">oracle.com/cloud/free</td></tr>
+  <tr><td>Canarytokens</td><td class="u">canarytokens.org · docs.canarytokens.org</td></tr>
+  <tr><td>Cheat Engine</td><td class="u">cheatengine.org</td></tr>
+  <tr><td>Hashcat</td><td class="u">hashcat.net/hashcat</td></tr>
+  <tr><td>mitmproxy</td><td class="u">mitmproxy.org</td></tr>
+  <tr><td>HTTP Toolkit</td><td class="u">httptoolkit.com</td></tr>
+  <tr><td>ANY.RUN sandbox</td><td class="u">any.run</td></tr>
+  <tr><td>Discord webhooks</td><td class="u">support.discord.com (Intro to Webhooks)</td></tr>
+  <tr><td>OverTheWire Bandit</td><td class="u">overthewire.org/wargames/bandit</td></tr>
+  <tr><td>TryHackMe Advent of Cyber 2026</td><td class="u">tryhackme.com/adventofcyber26</td></tr>
+</table>
+</section>
+
+<div class="about">
+  <h2>About CyberFlow Academy</h2>
+  <p>This guide gives you ten projects to start with. CyberFlow Academy teaches you what comes next: one structured path from your first terminal command to finding real vulnerabilities, with 480+ lessons, 87 hands-on labs and courses on AI for ethical hacking and website hacking. Rated 4.8 from over 120 reviews.</p>
+  <div class="offer"><b>Reader offer:</b> the first 100 people to use code <b>PROJECT50</b> get 50% off their first three months. <a href="https://whop.com/c/cyberflow/month29?promoCode=PROJECT50">Claim the offer (code applied automatically)</a>.</div>
+</div>
+
+</body>
+</html>
