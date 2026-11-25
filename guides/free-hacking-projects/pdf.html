@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Hacking Projects Guide · CyberFlow</title>
+<title>Free Hacking Home Lab Workbook · CyberFlow</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   @page {
     size: A4;
     margin: 22mm 20mm 20mm;
-    @bottom-left  { content: "CyberFlow · Free Hacking Projects Guide"; font: 500 8pt Inter, sans-serif; color: #8a8f98; }
+    @bottom-left  { content: "CyberFlow · Free Hacking Home Lab Workbook"; font: 500 8pt Inter, sans-serif; color: #8a8f98; }
     @bottom-right { content: "Page " counter(page) " of " counter(pages); font: 500 8pt Inter, sans-serif; color: #8a8f98; }
   }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -62,128 +62,224 @@
 
 <div class="mast"><img src="../../assets/favicon.svg" alt=""><span>CyberFlow</span><em>cyberflow-academy.github.io</em></div>
 
-<h1>Free Hacking Projects Guide</h1>
-<p class="lede">Ten hands-on security projects that cost nothing, from tricking an AI to running your own honeypot, with setup steps and safety rules for each.</p>
+<h1>Free Hacking Home Lab Workbook</h1>
+<p class="lede">Ten connected projects that build one hacking home lab for free: a honeypot that catches real attackers, your own VPN, a hacking range, an Active Directory lab, a security operations center and more.</p>
 <p class="meta">Version 1.0 · November 2026 · For your own devices and legal practice targets only</p>
 
-<div class="callout"><b>Read this first.</b> Run every project only on devices and accounts you own, or on targets built for practice. Keep the honeypot (Project 3) in the cloud, never on your home network. Use Cheat Engine (Project 5) only on offline single-player games. Never run malware on your own computer.</div>
+<div class="callout"><b>Read this first.</b> Every project in this workbook runs on systems you own or on targets built for practice. Keep lab targets on a private network that cannot reach the internet, keep your real server logins separate from the honeypot, and never point any of these tools at a system you do not have written permission to test.</div>
 
-<div class="how"><b>How to use this guide.</b> The projects are independent, so start with whichever one interests you most. Each one costs nothing and fits in an evening.
-<ol><li><a href="#s1">Trick an AI into breaking its rules</a></li><li><a href="#s2">Hack a deliberately vulnerable web store</a></li><li><a href="#s3">Run a honeypot that records real attackers</a></li><li><a href="#s4">Booby-trap your own files</a></li><li><a href="#s5">Edit a game's memory</a></li><li><a href="#s6">Test how fast your passwords fall</a></li><li><a href="#s7">Inspect your own phone's traffic</a></li><li><a href="#s8">Watch real malware in a sandbox</a></li><li><a href="#s9">Build a new-device alert for your Wi-Fi</a></li><li><a href="#s10">Play hacking wargames</a></li></ol></div>
+<div class="how"><b>How to use this workbook.</b> The ten projects build one home lab. Projects 1, 2, 5, 6 and 9 run on a free cloud server; projects 3, 4, 7, 8 and 10 run on your own PC. Do them in order the first time, because later projects reuse earlier ones. Each project lists what you need, the steps, what you should see, what to do if it breaks, and what you learned.
+<ol><li><a href="#s1">Catch real hackers with a honeypot and an attack map</a></li><li><a href="#s2">See everything your phone sends with your own VPN and Pi-hole</a></li><li><a href="#s3">Build your own hacking range</a></li><li><a href="#s4">Break into a fake company network</a></li><li><a href="#s5">Lock down your real server</a></li><li><a href="#s6">Build your own security operations center</a></li><li><a href="#s7">Beat a machine with no hints</a></li><li><a href="#s8">Build an AI with a secret, then break it</a></li><li><a href="#s9">Waste attackers' time with an SSH tarpit</a></li><li><a href="#s10">Final project: attack your own lab and catch yourself</a></li></ol></div>
 
 <section id="s1">
-<h2><span class="n">1</span>Trick an AI into breaking its rules</h2>
-<p class="when">Skill: prompt injection, the technique of making an AI system ignore its own instructions.</p>
+<h2><span class="n">1</span>Catch real hackers with a honeypot and an attack map</h2>
+<p class="when">Time: one evening, plus one night of waiting. You learn: Linux, SSH, cloud firewalls, logs, basic Python.</p>
+<h3>What you need</h3>
 <ul>
-  <li>Open <a href="https://play.lakera.ai/agent-breaker">Lakera Agent Breaker</a>, the successor to Lakera's Gandalf game. It presents fake AI applications that you are allowed to attack.</li>
-  <li>Read each app's goal, then try to make it reveal or do something it is instructed not to. Keep notes on which phrasings work and why.</li>
-  <li>Compare your notes with how real programs define AI vulnerabilities, for example Google's <a href="https://bughunters.google.com/about/rules/google-friends/ai-vulnerability-reward-program-rules">AI Vulnerability Reward Program rules</a>.</li>
+  <li>An <a href="https://www.oracle.com/cloud/free/">Oracle Cloud Free Tier</a> account. Oracle asks for a card to verify your identity; <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">Always Free resources</a> are not charged.</li>
+  <li>A free <a href="https://www.maxmind.com/en/geolite2/signup">MaxMind account</a> for the GeoLite location database.</li>
 </ul>
+<h3>Steps</h3>
+<ol>
+  <li>Create an Always Free virtual machine running Ubuntu. Use the Arm (Ampere A1) shape, which allows up to 2 OCPUs and 12 GB of memory. Add your own SSH public key when you create it.</li>
+  <li>If you see "out of host capacity", choose another availability domain or try again later. This is a temporary shortage, not an error on your side.</li>
+  <li>Log in over SSH. Move your real SSH login to an unusual port and allow keys only, so the honeypot can take port 22 without exposing your real login.</li>
+  <li>Install <a href="https://github.com/cowrie/cowrie">Cowrie</a> as a normal (non-root) user, following the official <a href="https://docs.cowrie.org/en/latest/INSTALL.html">installation guide</a>. Cowrie listens on port 2222; redirect port 22 to it as the guide describes.</li>
+  <li>Allow incoming traffic on port 22 in the instance's <a href="https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm">security list</a> and in the server's own firewall.</li>
+  <li>Leave it running overnight.</li>
+  <li>Read Cowrie's JSON log. The <a href="https://docs.cowrie.org/en/latest/OUTPUT.html">event reference</a> explains each event: login attempts, the usernames and passwords tried, and the commands typed.</li>
+  <li>Build the map: download the GeoLite2 City database, write a short Python script that reads the attacker IP addresses from the log, looks up each location in the database, and plots the points on a map with a mapping library such as Folium. Save it as an HTML file and open it in your browser.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>Login attempts within minutes to hours, common username and password pairs, download commands for malware, and points on your map from many countries.</li></ul>
+<h3>If it breaks</h3>
+<ul>
+  <li>No connections at all: check that port 22 is open in both the security list and the server firewall, and that Cowrie is running.</li>
+  <li>You locked yourself out: use the instance console in the Oracle dashboard to fix your SSH settings.</li>
+</ul>
+<h3>You just learned</h3>
+<ul><li>How exposed services get found automatically, what attackers do after logging in, how cloud firewalls work in layers, and how to turn raw logs into a visual.</li></ul>
+<p class="next">Keep this server. Projects 2, 5, 6 and 9 build on it.</p>
 </section>
 
 <section id="s2">
-<h2><span class="n">2</span>Hack a deliberately vulnerable web store</h2>
-<p class="when">Skill: real web vulnerabilities, practiced on an application built to be attacked.</p>
+<h2><span class="n">2</span>See everything your phone sends with your own VPN and Pi-hole</h2>
+<p class="when">Time: one to two hours. You learn: VPNs, DNS, Docker, port forwarding.</p>
+<h3>What you need</h3>
+<ul><li>The server from Project 1 and <a href="https://docs.docker.com/engine/install/">Docker Engine</a>.</li></ul>
+<h3>Steps</h3>
+<ol>
+  <li>Install Docker on the server.</li>
+  <li>Run <a href="https://github.com/wg-easy/wg-easy">wg-easy</a>, following its <a href="https://wg-easy.github.io/wg-easy/latest/getting-started/">getting started guide</a>. It gives you a WireGuard VPN and a web page for managing devices. (The older PiVPN project was discontinued in 2024.)</li>
+  <li>Open only the VPN's UDP port in your security list. Keep the wg-easy web page private, for example reachable only through the VPN itself.</li>
+  <li>Run <a href="https://github.com/pi-hole/docker-pi-hole">Pi-hole in Docker</a> on the same server, following the <a href="https://docs.pi-hole.net/">Pi-hole documentation</a>.</li>
+  <li>Set wg-easy's DNS server to Pi-hole's address, so every device on the VPN uses Pi-hole.</li>
+  <li>Create a client in wg-easy, scan the QR code with the WireGuard app on your phone, and connect.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>Pi-hole's dashboard filling with every domain your phone looks up, including tracking and analytics domains, with blocked requests counted.</li></ul>
+<h3>If it breaks</h3>
 <ul>
-  <li>Install <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a> on your own computer, following the instructions in its <a href="https://github.com/juice-shop/juice-shop">official repository</a>.</li>
-  <li>Your first challenge is to find the hidden score board. It tracks every challenge you solve.</li>
-  <li>Work through the beginner challenges, such as logging in as the administrator and viewing another user's basket.</li>
-  <li>If you get stuck, use the official companion book, <a href="https://pwning.owasp-juice.shop/">Pwning OWASP Juice Shop</a>.</li>
+  <li>Connected but no internet: check that the VPN's DNS points at Pi-hole and that Pi-hole is running.</li>
+  <li>Never expose Pi-hole's DNS port to the whole internet. An open DNS resolver gets abused by attackers.</li>
 </ul>
+<h3>You just learned</h3>
+<ul><li>How a VPN tunnel works, how DNS turns names into addresses, how containers run services side by side, and how much data apps send in the background.</li></ul>
 </section>
 
 <section id="s3">
-<h2><span class="n">3</span>Run a honeypot that records real attackers</h2>
-<p class="when">Skill: seeing how automated attacks behave. In a 2019 Sophos study, the first attack on a cloud honeypot arrived 52 seconds after it went online.</p>
-<ul>
-  <li>Create a free virtual machine using <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">Oracle Cloud Always Free resources</a>. Do not run a honeypot on your home network.</li>
-  <li>Install <a href="https://github.com/cowrie/cowrie">Cowrie</a>, an SSH and Telnet honeypot, following the <a href="https://docs.cowrie.org/">Cowrie documentation</a>.</li>
-  <li>Leave it running for at least a day, then read its logs: the passwords attackers tried and the commands they typed.</li>
-  <li>Follow your cloud provider's terms of use, and shut the machine down when you are finished.</li>
-</ul>
+<h2><span class="n">3</span>Build your own hacking range</h2>
+<p class="when">Time: an evening. You learn: virtualization, isolated networks, scanning, web testing.</p>
+<h3>What you need</h3>
+<ul><li>A PC with at least 8 GB of RAM, <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, the <a href="https://www.kali.org/get-kali/#kali-virtual-machines">Kali Linux virtual machine</a>, <a href="https://docs.rapid7.com/metasploit/metasploitable-2/">Metasploitable 2</a> and <a href="https://owasp.org/www-project-juice-shop/">OWASP Juice Shop</a>.</li></ul>
+<h3>Steps</h3>
+<ol>
+  <li>Install VirtualBox and import the Kali virtual machine.</li>
+  <li>Create an internal network in VirtualBox and attach Kali and Metasploitable to it. Metasploitable is deliberately vulnerable: it must never be reachable from the internet.</li>
+  <li>Run Juice Shop inside the lab, for example with Docker on Kali.</li>
+  <li>Take a snapshot of every machine before you start.</li>
+  <li>From Kali, discover the targets and their open services with <a href="https://nmap.org/book/man.html">Nmap</a>.</li>
+  <li>Route your browser through <a href="https://portswigger.net/burp/communitydownload">Burp Suite Community</a> and explore Juice Shop's requests. Its first challenge is finding the hidden score board.</li>
+  <li>For each service on Metasploitable, note its name and version and research known weaknesses. Write down how you would get in before you try.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>A list of services and versions, the Juice Shop score board ticking off challenges, and notes on which services are outdated.</li></ul>
+<h3>If it breaks</h3>
+<ul><li>Restore the snapshot. That is what it is for.</li></ul>
+<h3>You just learned</h3>
+<ul><li>How to build a safe lab, how scanning reveals a machine's attack surface, how web traffic looks through a proxy, and how to research a target methodically.</li></ul>
 </section>
 
 <section id="s4">
-<h2><span class="n">4</span>Booby-trap your own files</h2>
-<p class="when">Skill: detection. A canary token alerts you the moment someone opens or uses a decoy.</p>
-<ul>
-  <li>Go to <a href="https://canarytokens.org/">canarytokens.org</a> (free, by Thinkst) and create a token, such as a <a href="https://docs.canarytokens.org/guide/ms-word-token.html">Word document</a>, a set of fake <a href="https://docs.canarytokens.org/guide/aws-keys-token.html">AWS API keys</a> or a <a href="https://docs.canarytokens.org/guide/credit-card-token.html">credit card number</a>.</li>
-  <li>Give it a tempting name, such as "passwords" or "salaries", and store it on your own laptop or cloud drive.</li>
-  <li>Open it once yourself to see the alert email you will receive if anyone else does.</li>
-</ul>
+<h2><span class="n">4</span>Break into a fake company network</h2>
+<p class="when">Time: a weekend. You learn: Windows domains, Active Directory, attack-path thinking.</p>
+<h3>What you need</h3>
+<ul><li>A PC with around 16 GB of RAM or more for the smallest lab, plenty of free disk space, and <a href="https://orange-cyberdefense.github.io/GOAD/">GOAD (Game of Active Directory)</a> by Orange Cyberdefense. Its Windows machines use free evaluation licences.</li></ul>
+<h3>Steps</h3>
+<ol>
+  <li>Read GOAD's <a href="https://orange-cyberdefense.github.io/GOAD/installation/">installation guide</a> and pick the smallest lab your PC can run.</li>
+  <li>Install it on an isolated network. The lab is intentionally full of misconfigurations and must stay off the internet.</li>
+  <li>Join your Kali machine to the same isolated network.</li>
+  <li>Start as a normal domain user and collect information about the domain with <a href="https://bloodhound.specterops.io/">BloodHound</a>.</li>
+  <li>In BloodHound, find a path from your user to a domain administrator, and work through each step of it.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>A graph of users, groups and computers, and at least one path from a low-privileged user to full control of the domain.</li></ul>
+<h3>If it breaks</h3>
+<ul><li>Installation failures are usually memory or disk space. Try the smaller lab or close other programs.</li></ul>
+<h3>You just learned</h3>
+<ul><li>How companies manage Windows users, why one misconfiguration can expose a whole network, and how attackers think in paths rather than single bugs.</li></ul>
 </section>
 
 <section id="s5">
-<h2><span class="n">5</span>Edit a game's memory</h2>
-<p class="when">Skill: memory scanning, the same idea analysts use to see what a program stores.</p>
-<ul>
-  <li>Download <a href="https://www.cheatengine.org/">Cheat Engine</a> from its official site only.</li>
-  <li>Complete its built-in tutorial first (see the <a href="https://wiki.cheatengine.org/index.php?title=Tutorials">Cheat Engine tutorials</a>).</li>
-  <li>In an offline single-player game, search memory for a value such as your gold, change it in the game, and search again until one address remains. Then edit it.</li>
-  <li>Never use it on online games. Anti-cheat systems detect it and accounts get banned.</li>
-</ul>
+<h2><span class="n">5</span>Lock down your real server</h2>
+<p class="when">Time: one hour. You learn: Linux hardening, firewalls, automated blocking.</p>
+<h3>Steps</h3>
+<ol>
+  <li>Disable password logins and root login for SSH, and use keys only.</li>
+  <li>Close every port you do not use, both in Oracle's security list and in the server's firewall. Keep only the honeypot, your SSH port and the VPN port.</li>
+  <li>Turn on automatic security updates.</li>
+  <li>Install <a href="https://docs.crowdsec.net/u/getting_started/intro/">CrowdSec</a> with its firewall bouncer, so detected attackers are blocked automatically.</li>
+  <li>After a day, list CrowdSec's decisions to see which addresses it blocked and why.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>A growing list of banned addresses, most of them the same kind of automated scanners your honeypot recorded.</li></ul>
+<h3>If it breaks</h3>
+<ul><li>Locked out after a firewall change: use the Oracle instance console to undo it.</li></ul>
+<h3>You just learned</h3>
+<ul><li>The basics every server needs, why defaults are dangerous, and how shared blocklists protect everyone who uses them.</li></ul>
 </section>
 
 <section id="s6">
-<h2><span class="n">6</span>Test how fast your passwords fall</h2>
-<p class="when">Skill: understanding password strength from the attacker's side.</p>
-<ul>
-  <li>Install <a href="https://hashcat.net/hashcat/">Hashcat</a>. It uses your graphics card. See the <a href="https://hashcat.net/wiki/">Hashcat wiki</a> for setup and example hashes.</li>
-  <li>Create hashes of test passwords that resemble your own habits, and of a long random passphrase.</li>
-  <li>Run Hashcat against them and compare how long each one survives.</li>
-  <li>Only crack hashes you created yourself. Use what you learn to switch to long, unique passphrases and a password manager.</li>
-</ul>
+<h2><span class="n">6</span>Build your own security operations center</h2>
+<p class="when">Time: an evening. You learn: SIEM, log collection, alerting.</p>
+<h3>What you need</h3>
+<ul><li>A machine with at least 4 GB of free memory for <a href="https://documentation.wazuh.com/current/quickstart.html">Wazuh</a>. Wazuh supports Arm servers, so it can run on your cloud server; if memory is tight, run it in a virtual machine on your PC instead.</li></ul>
+<h3>Steps</h3>
+<ol>
+  <li>Install Wazuh with the all-in-one quickstart.</li>
+  <li>Install the Wazuh agent on your cloud server and on your lab machines.</li>
+  <li>Create a webhook in a private Discord server, and send Wazuh alerts to it through Wazuh's <a href="https://documentation.wazuh.com/current/user-manual/manager/integration-with-external-apis.html">external API integration</a>.</li>
+  <li>Test it: try a few wrong SSH passwords against your own server, or run a scan from Kali, and wait for the alert.</li>
+</ol>
+<h3>What you should see</h3>
+<ul><li>Alerts in the Wazuh dashboard and in Discord for failed logins, scans and file changes.</li></ul>
+<h3>If it breaks</h3>
+<ul><li>The dashboard is slow or stops: Wazuh needs memory. Stop other containers or move it to your PC.</li></ul>
+<h3>You just learned</h3>
+<ul><li>How security teams collect logs from many machines, turn them into alerts, and get notified in time to act.</li></ul>
 </section>
 
 <section id="s7">
-<h2><span class="n">7</span>Inspect your own phone's traffic</h2>
-<p class="when">Skill: seeing which servers your apps contact and what they send.</p>
-<ul>
-  <li>Install <a href="https://mitmproxy.org/">mitmproxy</a> (see <a href="https://docs.mitmproxy.org/stable/overview-getting-started/">getting started</a>) or <a href="https://httptoolkit.com/">HTTP Toolkit</a> (see its <a href="https://httptoolkit.com/docs/guides/android/">Android guide</a>).</li>
-  <li>Route your phone's traffic through it and install its certificate as described in the <a href="https://docs.mitmproxy.org/stable/concepts-certificates/">certificate documentation</a>.</li>
-  <li>Open one app at a time and note every domain it contacts. Some apps use certificate pinning, so their traffic will not be readable.</li>
-  <li>Remove the certificate from your phone when you are finished.</li>
-</ul>
+<h2><span class="n">7</span>Beat a machine with no hints</h2>
+<p class="when">Time: one to three evenings. You learn: the full methodology, from discovery to full control.</p>
+<h3>Steps</h3>
+<ol>
+  <li>Download a beginner machine from <a href="https://www.vulnhub.com/">VulnHub</a> or <a href="https://hackmyvm.eu/">HackMyVM</a>.</li>
+  <li>Import it into VirtualBox on your internal network, never on a bridged or NAT network.</li>
+  <li>Work through the methodology: find the machine on the network, list its services, research each one, gain a foothold, then escalate to administrator.</li>
+  <li>Keep notes as you go: what you tried, what failed and why.</li>
+  <li>Only read a walkthrough after you have finished or been stuck for a long time, and then compare it with your notes.</li>
+</ol>
+<h3>You just learned</h3>
+<ul><li>How to approach an unknown system on your own, the single most important skill in offensive security.</li></ul>
 </section>
 
 <section id="s8">
-<h2><span class="n">8</span>Watch real malware in a sandbox</h2>
-<p class="when">Skill: malware behavior analysis, without risking your own computer.</p>
-<ul>
-  <li>Create a free account on <a href="https://any.run/">ANY.RUN</a>. The <a href="https://any.run/plans/">Community plan</a> runs analyses in virtual machines in your browser.</li>
-  <li>Browse public analyses to watch real malware families run: the processes they start, the files they change and the servers they contact.</li>
-  <li>Free analyses are public. Never upload personal or work files, and never download samples to your own machine.</li>
-</ul>
+<h2><span class="n">8</span>Build an AI with a secret, then break it</h2>
+<p class="when">Time: an evening. You learn: how language models follow instructions and why prompt injection works.</p>
+<h3>Steps</h3>
+<ol>
+  <li>Install <a href="https://ollama.com/">Ollama</a> and download a small model your PC can run.</li>
+  <li>Create a custom model with a system prompt containing a made-up password and the rule never to reveal it. The <a href="https://docs.ollama.com/modelfile">Modelfile documentation</a> shows how.</li>
+  <li>Try to get the password out: role-play, ask for it in another language, ask for a story or an acrostic poem, or ask it to repeat its instructions.</li>
+  <li>Strengthen the instructions and attack again. Then try a defense outside the model, such as filtering its answers for the password.</li>
+</ol>
+<h3>You just learned</h3>
+<ul><li>Why instructions alone cannot protect secrets in an AI app, and why real systems keep sensitive data out of the model's reach.</li></ul>
 </section>
 
 <section id="s9">
-<h2><span class="n">9</span>Build a new-device alert for your Wi-Fi</h2>
-<p class="when">Skill: basic networking and scripting.</p>
-<ul>
-  <li>Install <a href="https://www.python.org/downloads/">Python</a> and write a script that scans your own home network every few minutes, for example using <a href="https://nmap.org/book/man-host-discovery.html">Nmap host discovery</a>.</li>
-  <li>Store the devices it has seen, and compare each new scan against that list.</li>
-  <li>When a new device appears, send a message to your Discord server using a <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks">webhook</a>.</li>
-  <li>Scan only networks you own or manage.</li>
-</ul>
+<h2><span class="n">9</span>Waste attackers' time with an SSH tarpit</h2>
+<p class="when">Time: thirty minutes. You learn: how automated attackers behave.</p>
+<h3>Steps</h3>
+<ol>
+  <li>Create one of the two small AMD virtual machines included in Oracle's Always Free tier.</li>
+  <li>Move that machine's real SSH login to another port, then install <a href="https://github.com/skeeto/endlessh">Endlessh</a> on port 22. It sends an endless, slow SSH banner, so connecting bots wait for a login that never comes.</li>
+  <li>After a day, read its log, which records how long each connection lasted.</li>
+</ol>
+<h3>You just learned</h3>
+<ul><li>That most attacks are automated, and that defenders can make them slower and more expensive.</li></ul>
 </section>
 
 <section id="s10">
-<h2><span class="n">10</span>Play hacking wargames</h2>
-<p class="when">Skill: the command line, through puzzles.</p>
-<ul>
-  <li>Start <a href="https://overthewire.org/wargames/bandit/">OverTheWire Bandit</a>. Each level hides the password to the next on a Linux server, and you find it with terminal commands.</li>
-  <li>Join TryHackMe's <a href="https://tryhackme.com/adventofcyber26">Advent of Cyber 2026</a>, which starts on 1 December with a new free challenge each day.</li>
-  <li>When you finish Bandit, continue with the other <a href="https://overthewire.org/wargames/">OverTheWire wargames</a>.</li>
-</ul>
+<h2><span class="n">10</span>Final project: attack your own lab and catch yourself</h2>
+<p class="when">Time: an evening. You learn: how attack and defense fit together.</p>
+<h3>Steps</h3>
+<ol>
+  <li>Install the Wazuh agent on a modern Linux target in your lab, and run a deliberately weak service on it.</li>
+  <li>From Kali, run a full attack against it: discovery, scanning, access and escalation. Write down the time of each step.</li>
+  <li>Switch sides. Open Wazuh and find each step in the alerts and logs.</li>
+  <li>For every step Wazuh missed, find out why, and add or tune a rule so it would be detected next time.</li>
+</ol>
+<h3>You just learned</h3>
+<ul><li>How an attack looks from both sides, and how detection is built and improved: the daily work of a security team.</li></ul>
 </section>
 
 <section id="prevention">
+<h2>Optional extras</h2>
+<ul>
+  <li>Split your lab into separate networks with an <a href="https://docs.opnsense.org/">OPNsense</a> firewall virtual machine.</li>
+  <li>Self-host a password manager with <a href="https://github.com/dani-garcia/vaultwarden">Vaultwarden</a>, reachable only through your VPN.</li>
+  <li>Capture your lab traffic with <a href="https://www.wireshark.org/">Wireshark</a> while you attack it.</li>
+  <li>Run a capture-the-flag competition for friends with <a href="https://docs.ctfd.io/">CTFd</a>.</li>
+</ul>
 <h2>Staying safe and legal</h2>
 <ul>
-  <li><b>Only test what you own or have written permission to test.</b> Practice targets such as Juice Shop and wargames exist so that you never need to test anyone else's systems.</li>
-  <li>Keep honeypots isolated in the cloud and switch them off when you are done.</li>
-  <li>Never run malware on your own devices. Use a sandbox such as ANY.RUN instead.</li>
-  <li>Download every tool only from the official site or repository linked in this guide.</li>
+  <li><b>Only test systems you own or have written permission to test.</b> Practice targets exist so you never need anyone else's.</li>
+  <li>Keep vulnerable machines on internal networks only.</li>
+  <li>Download tools only from the official sites linked in this workbook.</li>
+  <li>Shut down cloud resources you no longer use.</li>
 </ul>
 </section>
 
@@ -191,26 +287,31 @@
 <h2>Resources</h2>
 <table>
   <tr><th style="width:34%">Tool or guide</th><th>Address</th></tr>
-  <tr><td>Lakera Agent Breaker</td><td class="u">play.lakera.ai/agent-breaker</td></tr>
-  <tr><td>OWASP Juice Shop</td><td class="u">owasp.org/www-project-juice-shop · github.com/juice-shop/juice-shop</td></tr>
-  <tr><td>Pwning OWASP Juice Shop</td><td class="u">pwning.owasp-juice.shop</td></tr>
+  <tr><td>Oracle Cloud Free Tier</td><td class="u">oracle.com/cloud/free</td></tr>
   <tr><td>Cowrie honeypot</td><td class="u">github.com/cowrie/cowrie · docs.cowrie.org</td></tr>
-  <tr><td>Oracle Cloud Always Free</td><td class="u">oracle.com/cloud/free</td></tr>
-  <tr><td>Canarytokens</td><td class="u">canarytokens.org · docs.canarytokens.org</td></tr>
-  <tr><td>Cheat Engine</td><td class="u">cheatengine.org</td></tr>
-  <tr><td>Hashcat</td><td class="u">hashcat.net/hashcat</td></tr>
-  <tr><td>mitmproxy</td><td class="u">mitmproxy.org</td></tr>
-  <tr><td>HTTP Toolkit</td><td class="u">httptoolkit.com</td></tr>
-  <tr><td>ANY.RUN sandbox</td><td class="u">any.run</td></tr>
-  <tr><td>Discord webhooks</td><td class="u">support.discord.com (Intro to Webhooks)</td></tr>
-  <tr><td>OverTheWire Bandit</td><td class="u">overthewire.org/wargames/bandit</td></tr>
-  <tr><td>TryHackMe Advent of Cyber 2026</td><td class="u">tryhackme.com/adventofcyber26</td></tr>
+  <tr><td>MaxMind GeoLite</td><td class="u">dev.maxmind.com/geoip/geolite2-free-geolocation-data</td></tr>
+  <tr><td>Docker Engine</td><td class="u">docs.docker.com/engine/install</td></tr>
+  <tr><td>wg-easy</td><td class="u">github.com/wg-easy/wg-easy</td></tr>
+  <tr><td>Pi-hole</td><td class="u">docs.pi-hole.net · github.com/pi-hole/docker-pi-hole</td></tr>
+  <tr><td>VirtualBox</td><td class="u">virtualbox.org</td></tr>
+  <tr><td>Kali Linux</td><td class="u">kali.org/get-kali</td></tr>
+  <tr><td>Metasploitable 2</td><td class="u">docs.rapid7.com/metasploit/metasploitable-2</td></tr>
+  <tr><td>OWASP Juice Shop</td><td class="u">owasp.org/www-project-juice-shop</td></tr>
+  <tr><td>Burp Suite Community</td><td class="u">portswigger.net/burp/communitydownload</td></tr>
+  <tr><td>Nmap</td><td class="u">nmap.org</td></tr>
+  <tr><td>GOAD</td><td class="u">orange-cyberdefense.github.io/GOAD</td></tr>
+  <tr><td>BloodHound</td><td class="u">bloodhound.specterops.io</td></tr>
+  <tr><td>CrowdSec</td><td class="u">docs.crowdsec.net</td></tr>
+  <tr><td>Wazuh</td><td class="u">documentation.wazuh.com</td></tr>
+  <tr><td>VulnHub · HackMyVM</td><td class="u">vulnhub.com · hackmyvm.eu</td></tr>
+  <tr><td>Ollama</td><td class="u">ollama.com · docs.ollama.com</td></tr>
+  <tr><td>Endlessh</td><td class="u">github.com/skeeto/endlessh</td></tr>
 </table>
 </section>
 
 <div class="about">
   <h2>About CyberFlow Academy</h2>
-  <p>This guide gives you ten projects to start with. CyberFlow Academy teaches you what comes next: one structured path from your first terminal command to finding real vulnerabilities, with 480+ lessons, 87 hands-on labs and courses on AI for ethical hacking and website hacking. Rated 4.8 from over 120 reviews.</p>
+  <p>This workbook gives you a lab and ten projects. CyberFlow Academy teaches you what comes next: one structured path from your first terminal command to finding real vulnerabilities, with 480+ lessons, 87 hands-on labs and courses on ethical hacking, networking and AI for ethical hacking. Rated 4.8 from over 120 reviews.</p>
   <div class="offer"><b>Reader offer:</b> the first 100 people to use code <b>PROJECT50</b> get 50% off their first three months. <a href="https://whop.com/c/cyberflow/month29?promoCode=PROJECT50">Claim the offer (code applied automatically)</a>.</div>
 </div>
 
