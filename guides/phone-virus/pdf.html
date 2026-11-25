@@ -2,102 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>CyberFlow · Nuke (Almost) Any Virus Off Your Phone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phone Malware Removal Guide · CyberFlow</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
-  @page { size: A4; margin: 0; }
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm;
+    @bottom-left  { content: "CyberFlow · Phone Malware Removal Guide"; font: 500 8pt Inter, sans-serif; color: #8a8f98; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font: 500 8pt Inter, sans-serif; color: #8a8f98; }
+  }
   html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { margin:0; background:#0e0e10; color:#fff; font:500 13.6px/1.6 Urbanist, "Segoe UI", sans-serif; }
-  .page { width: 210mm; min-height: 297mm; padding: 16mm 15mm 12mm; box-sizing: border-box; position: relative; }
-  .page + .page { break-before: page; }
-  .brand { height: 20px; margin-bottom: 14mm; }
-  h1 { font-size: 34px; line-height: 1.02; font-weight: 900; letter-spacing: -.03em; margin: 0 0 8px; }
-  h1 em { font-style: normal; color: #ff3a50; }
-  .sub { color: #a3a3ad; font-size: 15px; margin: 0 0 9mm; }
-  .warn { border-left: 3px solid #ff3a50; padding: 2px 0 2px 12px; margin: 0 0 9mm; color: #e7e7ea; font-size: 13px; }
-  .warn b { color: #ff8a96; }
-  .step { display: grid; grid-template-columns: 34px 1fr; gap: 0 14px; margin: 0 0 7.5mm; break-inside: avoid; }
-  .num { width: 34px; height: 34px; border-radius: 50%; background: #f5c20f; color: #111; font: 900 18px/34px Urbanist, sans-serif; text-align: center; }
-  .step h2 { margin: 3px 0 4px; font-size: 18px; font-weight: 800; letter-spacing: -.01em; }
-  .step h2 small { font-size: 12.5px; font-weight: 600; color: #8b8b96; margin-left: 6px; }
-  .step p { margin: 0 0 4px; color: #e2e2e6; }
-  .step p b { color: #fff; }
-  .os { color: #f5c20f; font-weight: 800; }
-  .next { color: #8b8b96; font-size: 12.5px; font-style: italic; }
-  a { color: #8fd3ff; text-decoration: none; }
-  .box { background: #17171c; border: 1px solid #2a2a31; border-radius: 12px; padding: 12px 14px; margin: 0 0 7mm; }
-  .box h3 { margin: 0 0 6px; font-size: 15px; font-weight: 800; }
-  .box p { margin: 0 0 4px; color: #e2e2e6; }
-  .cta { margin-top: 4mm; background: linear-gradient(135deg,#2a1d05,#17130a 60%,#141418); border: 1px solid #4a3a12; border-radius: 14px; padding: 14px 16px; }
-  .cta h3 { margin: 0 0 4px; font-size: 16px; font-weight: 800; }
-  .cta p { margin: 0; color: #d8d3c4; font-size: 13px; }
-  .cta a { color: #f5c20f; font-weight: 800; white-space: nowrap; }
-  .foot { position: absolute; left: 15mm; right: 15mm; bottom: 6mm; color: #5f5f6a; font-size: 10.5px; text-align: center; }
+  body { margin: 0; color: #1c1f24; font: 400 10.2pt/1.55 Inter, "Segoe UI", Arial, sans-serif; background: #fff; }
+  a { color: #b3122a; text-decoration: none; }
+  @media screen { html { background:#e9e9ee; } body { max-width: 210mm; margin: 0 auto; padding: 22mm 20mm; box-sizing: border-box; background:#fff; } }
+  @media screen and (max-width: 700px) { body { padding: 20px 16px; } table { display:block; overflow-x:auto; } }
+
+  .mast { display: flex; align-items: center; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid #e4e6ea; margin-bottom: 18px; }
+  .mast img { width: 20px; height: 20px; }
+  .mast span { font-weight: 800; font-size: 10.5pt; letter-spacing: .01em; }
+  .mast em { margin-left: auto; font-style: normal; color: #8a8f98; font-size: 8.5pt; }
+
+  h1 { font-size: 22pt; line-height: 1.15; font-weight: 800; letter-spacing: -.015em; margin: 6px 0 6px; }
+  .lede { font-size: 11pt; color: #4a4f57; margin: 0 0 14px; }
+  .meta { font-size: 8.5pt; color: #8a8f98; margin: 0 0 18px; }
+
+  .callout { border: 1px solid #f1c7cd; background: #fdf3f4; border-radius: 6px; padding: 10px 12px; margin: 0 0 18px; font-size: 9.6pt; }
+  .callout b { color: #9b0f24; }
+
+  .how { background: #f6f7f9; border-radius: 6px; padding: 10px 12px; margin: 0 0 20px; font-size: 9.6pt; }
+  .how ol { margin: 4px 0 0; padding-left: 18px; }
+
+  h2 { font-size: 13pt; font-weight: 800; margin: 22px 0 6px; padding-top: 2px; break-after: avoid; }
+  h2 .n { display: inline-block; min-width: 22px; color: #b3122a; }
+  .when { color: #6b7079; font-size: 9.4pt; margin: 0 0 8px; }
+  h3 { font-size: 10.2pt; font-weight: 700; margin: 10px 0 3px; break-after: avoid; }
+  p { margin: 0 0 7px; }
+  ul { margin: 0 0 8px; padding-left: 18px; }
+  li { margin: 0 0 4px; }
+  .next { color: #6b7079; font-size: 9.2pt; font-style: italic; margin-top: 4px; }
+  section { break-inside: avoid-page; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6px 0 14px; }
+  th { text-align: left; font-weight: 700; color: #4a4f57; border-bottom: 1.5px solid #1c1f24; padding: 5px 6px; }
+  td { border-bottom: 1px solid #e4e6ea; padding: 5px 6px; vertical-align: top; }
+  td.u { color: #6b7079; word-break: break-all; font-size: 8.4pt; }
+
+  .about { border-top: 1px solid #e4e6ea; margin-top: 18px; padding-top: 12px; break-inside: avoid; }
+  .about h2 { margin-top: 0; }
+  .about .offer { margin-top: 8px; padding: 10px 12px; border: 1.5px solid #1c1f24; border-radius: 6px; font-size: 9.8pt; }
 </style>
 </head>
 <body>
 
-<section class="page">
-  <img class="brand" src="../../assets/logo-wordmark-sm.png" alt="CyberFlow">
-  <h1>Nuke (almost) any virus<br><em>off your phone.</em></h1>
-  <p class="sub">Do the steps in order and stop as soon as the problem is gone.</p>
+<div class="mast"><img src="../../assets/favicon.svg" alt=""><span>CyberFlow</span><em>cyberflow-academy.github.io</em></div>
 
-  <p class="warn"><b>Before you start:</b> if you think a partner or an ex put stalkerware on your phone, removing it can alert them and delete evidence. Get help and make a safety plan first, from a different device: <a href="https://stopstalkerware.org/">stopstalkerware.org</a>.</p>
+<h1>Phone Malware Removal Guide</h1>
+<p class="lede">A step-by-step process for cleaning an infected Android phone or iPhone, from the five-minute fix to a full system reinstall.</p>
+<p class="meta">Version 1.0 · November 2026 · For your own devices only</p>
 
-  <div class="step"><div class="num">1</div><div>
-    <h2>Find the bad app <small>5 minutes</small></h2>
-    <p><span class="os">Android:</span> restart in <a href="https://support.google.com/android/answer/7665064">Safe Mode</a>. If the pop-ups stop, an app is the problem, so uninstall your newest apps one by one. If one won't uninstall, go to Settings → Security → <b>Device admin apps</b>, remove it there, then uninstall it. Then open <b>Accessibility</b> and turn off anything you don't recognize.</p>
-    <p><span class="os">iPhone:</span> delete <a href="https://support.apple.com/guide/iphone/delete-calendar-subscriptions-iph3d1110d4/ios">calendar subscriptions</a> you didn't add, and remove any profile you didn't install in Settings → General → <a href="https://support.apple.com/guide/iphone/install-or-remove-configuration-profiles-iph6c493b19/ios">VPN &amp; Device Management</a>.</p>
-    <p><span class="os">Both:</span> block <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid">notifications</a> from websites you don't know.</p>
-    <p class="next">Still acting weird? Go to step 2.</p>
-  </div></div>
+<div class="callout"><b>Read this first.</b> If you suspect a partner, ex-partner or someone close to you installed monitoring software (stalkerware) on your phone, do not remove it yet. Removal can alert that person and destroy evidence. Contact a support service and plan your next steps from a different device. See the Coalition Against Stalkerware at <a href="https://stopstalkerware.org/">stopstalkerware.org</a>.</div>
 
-  <div class="step"><div class="num">2</div><div>
-    <h2>Scan it and check your accounts</h2>
-    <p><span class="os">Android:</span> run a <a href="https://support.google.com/googleplay/answer/2812853">Play Protect</a> scan, then a free scan with <a href="https://www.malwarebytes.com/android">Malwarebytes</a>. <span class="os">iPhone:</span> skip antivirus apps, iOS doesn't let them scan.</p>
-    <p>Worried about real spyware? <a href="https://iverify.io/products/basic">iVerify Basic</a>, or Amnesty's free <a href="https://docs.mvt.re/">Mobile Verification Toolkit</a>.</p>
-    <p>Sign out every device you don't recognize on <a href="https://myaccount.google.com/device-activity">Google</a>, <a href="https://support.apple.com/en-us/102649">Apple</a> and WhatsApp (Settings → <b>Linked devices</b>), then change your passwords from a computer you trust.</p>
-    <p class="next">Still infected? Step 3.</p>
-  </div></div>
+<div class="how"><b>How to use this guide.</b> Work through the steps in order and stop as soon as the problem is resolved. Most infections are solved in Step 1.
+<ol><li>Find and remove the malicious app</li><li>Scan the phone and secure your accounts</li><li>Factory reset, the correct way</li><li>Reinstall the operating system</li><li>Maximum protection for high-risk users</li></ol></div>
 
-  <div class="step"><div class="num">3</div><div>
-    <h2>Factory reset, the right way</h2>
-    <p>Back up your photos, contacts and files, <b>not your apps</b> (an app backup can bring the malware back). <a href="https://support.google.com/android/answer/6088915">Reset the phone</a>, set it up <b>as new</b>, install updates first, then download your apps fresh from the official store.</p>
-    <p class="next">Came back after a reset? It's hiding in the system. Step 4.</p>
-  </div></div>
+<section>
+<h2><span class="n">1</span>Find and remove the malicious app</h2>
+<p class="when">About five minutes. Most phone infections come from an app the owner installed.</p>
+<h3>Android</h3>
+<ul>
+  <li>Restart in <a href="https://support.google.com/android/answer/7665064">Safe Mode</a>. This starts the phone with every app you installed disabled. If the pop-ups or unusual behavior stop, one of your apps is responsible.</li>
+  <li>Uninstall your most recently installed apps one at a time until the problem is gone.</li>
+  <li>If an app cannot be uninstalled, it has probably given itself administrator rights. Open Settings → Security → <b>Device admin apps</b>, revoke its access, then uninstall it.</li>
+  <li>Open Settings → <b>Accessibility</b> and disable any service you do not recognize. This permission lets an app read your screen and act on your behalf.</li>
+</ul>
+<h3>iPhone</h3>
+<ul>
+  <li>Remove <a href="https://support.apple.com/guide/iphone/delete-calendar-subscriptions-iph3d1110d4/ios">calendar subscriptions</a> you did not add. These are the usual source of fake "virus" alerts.</li>
+  <li>Open Settings → General → <a href="https://support.apple.com/guide/iphone/install-or-remove-configuration-profiles-iph6c493b19/ios">VPN &amp; Device Management</a> and remove any profile you did not install.</li>
+</ul>
+<h3>All phones</h3>
+<ul><li>In your browser, block <a href="https://support.google.com/chrome/answer/3220216?co=GENIE.Platform%3DAndroid">notifications</a> from any website you do not recognize.</li></ul>
+<p class="next">If the problem continues, go to Step 2.</p>
 </section>
 
-<section class="page">
-  <img class="brand" src="../../assets/logo-wordmark-sm.png" alt="CyberFlow">
-
-  <div class="step"><div class="num">4</div><div>
-    <h2>Reinstall the whole system</h2>
-    <p><span class="os">Pixel:</span> <a href="https://flash.android.com/">Android Flash Tool</a> in Chrome (wipes everything, relock the bootloader after). <span class="os">Samsung:</span> <a href="https://www.samsung.com/us/support/owners/app/smart-switch">Smart Switch</a> recovery or a service center. <span class="os">iPhone:</span> <a href="https://support.apple.com/en-us/118106">recovery mode → Restore</a>.</p>
-    <p>A cheap no-name phone with no official firmware? Honestly, replace it.</p>
-  </div></div>
-
-  <div class="step"><div class="num">5</div><div>
-    <h2>Maximum protection <small>if someone is really after you</small></h2>
-    <p>Restart your phone every week (the <a href="https://media.defense.gov/2020/Jul/28/2002465283/-1/-1/0/MOBILE_DEVICE_BEST_PRACTICES_FINAL_V3%20-%20COPY.PDF">NSA's advice</a>). <span class="os">iPhone:</span> turn on <a href="https://support.apple.com/en-us/105120">Lockdown Mode</a>. <span class="os">Android 16:</span> turn on <a href="https://support.google.com/android/answer/16339980">Advanced Protection</a>.</p>
-    <p>A real <a href="https://support.apple.com/en-us/102174">Apple threat notification</a> never asks you to click a link or install anything. Journalists and activists can get free help from <a href="https://securitylab.amnesty.org/">Amnesty's Security Lab</a> and <a href="https://www.accessnow.org/help/">Access Now</a>.</p>
-  </div></div>
-
-  <div class="box">
-    <h3>What actually keeps you safe</h3>
-    <p><b>Updates.</b> They alone stopped the Play Store attack from the video. If your phone doesn't get them anymore, a supported phone fixes more than any app.</p>
-    <p>Buying Android? Make sure it's <a href="https://support.google.com/googleplay/answer/7165974">Play Protect certified</a>, and skip weirdly cheap no-name boxes (<a href="https://www.ic3.gov/PSA/2025/PSA250605">FBI warning</a>).</p>
-    <p>"Your phone has 13 viruses" pop-ups are ads. The cleaner app they push is the actual risk.</p>
-  </div>
-
-  <div class="cta">
-    <h3>Want to understand how all of this actually works?</h3>
-    <p>Cyberflow Academy: one path from zero to finding real vulnerabilities, 480+ lessons, 87 hands-on labs, Android Hacking included. The first 100 people with code <b>PHONE50</b> get half off their first three months: <a href="https://cyberflow-academy.github.io/?v=phone-pdf">cyberflow-academy.github.io</a></p>
-  </div>
-  <p class="foot">CyberFlow · for your own devices only</p>
+<section>
+<h2><span class="n">2</span>Scan the phone and secure your accounts</h2>
+<p class="when">No single scanner catches everything, and sometimes the phone is clean but an account is compromised.</p>
+<ul>
+  <li><b>Android:</b> run a <a href="https://support.google.com/googleplay/answer/2812853">Google Play Protect</a> scan, then a second scan with <a href="https://www.malwarebytes.com/android">Malwarebytes</a> (free).</li>
+  <li><b>iPhone:</b> avoid paid "antivirus" apps. iOS does not allow apps to inspect other apps, so they cannot scan the device.</li>
+  <li><b>Suspected commercial spyware:</b> use <a href="https://iverify.io/products/basic">iVerify Basic</a> (iPhone and Android) or Amnesty International's free <a href="https://docs.mvt.re/">Mobile Verification Toolkit</a>.</li>
+  <li><b>Accounts:</b> review signed-in devices for your <a href="https://myaccount.google.com/device-activity">Google account</a> and <a href="https://support.apple.com/en-us/102649">Apple Account</a>, and WhatsApp (Settings → Linked devices). Sign out anything you do not recognize.</li>
+  <li>Change your passwords from a computer you trust, not from the affected phone.</li>
+</ul>
+<p class="next">If the infection persists, go to Step 3.</p>
 </section>
+
+<section>
+<h2><span class="n">3</span>Factory reset, the correct way</h2>
+<ul>
+  <li>Back up photos, contacts and files. <b>Do not back up apps</b>: restoring an app backup can reinstall the malware.</li>
+  <li><a href="https://support.google.com/android/answer/6088915">Reset the phone</a> and set it up as a new device.</li>
+  <li>Install all system updates before anything else, then download your apps again from the official store.</li>
+</ul>
+<p>A factory reset erases user data but not the system partition. Malware that installed itself there can survive.</p>
+<p class="next">If the problem returns after a reset, go to Step 4.</p>
+</section>
+
+<section>
+<h2><span class="n">4</span>Reinstall the operating system</h2>
+<ul>
+  <li><b>Google Pixel:</b> use the <a href="https://flash.android.com/">Android Flash Tool</a> in Chrome. It erases the device and requires an unlocked bootloader; lock it again when finished.</li>
+  <li><b>Samsung:</b> use <a href="https://www.samsung.com/us/support/owners/app/smart-switch">Smart Switch</a> emergency recovery, or visit an authorized service center.</li>
+  <li><b>iPhone:</b> put the phone in <a href="https://support.apple.com/en-us/118106">recovery mode</a>, connect it to a computer and choose Restore. This installs a fresh, Apple-signed copy of iOS.</li>
+  <li><b>Unbranded devices</b> with no official firmware cannot be reliably cleaned. Replace them.</li>
+</ul>
+</section>
+
+<section>
+<h2><span class="n">5</span>Maximum protection for high-risk users</h2>
+<p class="when">For journalists, activists and anyone who may be targeted by commercial spyware.</p>
+<ul>
+  <li>Restart your phone at least once a week, as the <a href="https://media.defense.gov/2020/Jul/28/2002465283/-1/-1/0/MOBILE_DEVICE_BEST_PRACTICES_FINAL_V3%20-%20COPY.PDF">NSA recommends</a>. Many spyware infections do not survive a reboot.</li>
+  <li><b>iPhone:</b> enable <a href="https://support.apple.com/en-us/105120">Lockdown Mode</a>. A genuine <a href="https://support.apple.com/en-us/102174">Apple threat notification</a> never asks you to click a link or install anything.</li>
+  <li><b>Android 16:</b> enable <a href="https://support.google.com/android/answer/16339980">Advanced Protection</a>.</li>
+  <li>Free expert help: <a href="https://securitylab.amnesty.org/">Amnesty International Security Lab</a> and the <a href="https://www.accessnow.org/help/">Access Now Digital Security Helpline</a>.</li>
+</ul>
+</section>
+
+<section>
+<h2>Prevention</h2>
+<ul>
+  <li><b>Keep the phone updated.</b> Security updates alone would have blocked the 2026 Play Store campaign discussed in the video. A phone that no longer receives updates should be replaced.</li>
+  <li>When buying an Android device, confirm it is <a href="https://support.google.com/googleplay/answer/7165974">Play Protect certified</a>. Avoid unusually cheap no-name devices (see the <a href="https://www.ic3.gov/PSA/2025/PSA250605">FBI's BadBox 2.0 warning</a>).</li>
+  <li>Pop-ups claiming your phone "has viruses" are advertisements. The cleaner apps they promote are a common source of infection.</li>
+</ul>
+</section>
+
+<section>
+<h2>Resources</h2>
+<table>
+  <tr><th style="width:34%">Tool or guide</th><th>Address</th></tr>
+  <tr><td>Android Safe Mode</td><td class="u">support.google.com/android/answer/7665064</td></tr>
+  <tr><td>Google Play Protect</td><td class="u">support.google.com/googleplay/answer/2812853</td></tr>
+  <tr><td>Malwarebytes for Android</td><td class="u">malwarebytes.com/android</td></tr>
+  <tr><td>iVerify Basic</td><td class="u">iverify.io/products/basic</td></tr>
+  <tr><td>Mobile Verification Toolkit</td><td class="u">docs.mvt.re · github.com/mvt-project/mvt</td></tr>
+  <tr><td>Google device activity</td><td class="u">myaccount.google.com/device-activity</td></tr>
+  <tr><td>Apple Account devices</td><td class="u">support.apple.com/en-us/102649</td></tr>
+  <tr><td>Android factory reset</td><td class="u">support.google.com/android/answer/6088915</td></tr>
+  <tr><td>Android Flash Tool (Pixel)</td><td class="u">flash.android.com</td></tr>
+  <tr><td>Samsung Smart Switch</td><td class="u">samsung.com/us/support/owners/app/smart-switch</td></tr>
+  <tr><td>iPhone recovery mode</td><td class="u">support.apple.com/en-us/118106</td></tr>
+  <tr><td>Apple Lockdown Mode</td><td class="u">support.apple.com/en-us/105120</td></tr>
+  <tr><td>Android Advanced Protection</td><td class="u">support.google.com/android/answer/16339980</td></tr>
+  <tr><td>Coalition Against Stalkerware</td><td class="u">stopstalkerware.org</td></tr>
+  <tr><td>Access Now Helpline</td><td class="u">accessnow.org/help</td></tr>
+</table>
+</section>
+
+<div class="about">
+  <h2>About CyberFlow Academy</h2>
+  <p>This guide shows you what to do. CyberFlow Academy teaches you how it works: one structured path from your first terminal command to finding real vulnerabilities, with 480+ lessons, 87 hands-on labs and a course dedicated to Android hacking. Rated 4.8 from over 120 reviews.</p>
+  <div class="offer"><b>Reader offer:</b> the first 100 people to use code <b>PHONE50</b> get 50% off their first three months. <a href="https://whop.com/c/cyberflow/month29?promoCode=PHONE50">Claim the offer (code applied automatically)</a>.</div>
+</div>
 
 </body>
 </html>
